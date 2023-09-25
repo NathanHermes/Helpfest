@@ -3,7 +3,7 @@ import { Company } from './company'
 
 
 
-test('Should be create a object instance of company', () => {
+test('should be able to create a object instance of company', () => {
   const company = new Company({
     name: 'Oasis Eventos',
     email: 'oasis@gmail.com',
