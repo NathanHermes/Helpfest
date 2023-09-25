@@ -4,7 +4,7 @@
   "description": "Helpfest é uma plataforma web pensada e desenvolvida para oferecer, às empresas e organizações envolvidas no planejamento de grandes festas/eventos, um sistema, simples, fácil e eficiente para agilizar e melhorar suas operações.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
   },
   "keywords": [
     "Helpfest",
