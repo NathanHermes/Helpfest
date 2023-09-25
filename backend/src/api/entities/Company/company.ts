@@ -1,4 +1,5 @@
 export interface CompanyProps {
+  id?: string
   name: string
   email: string
   CNPJ: string
@@ -16,6 +17,10 @@ export class Company {
 
   constructor (props: CompanyProps) {
     this.props = props
+  }
+
+  get id () {
+    return this.props.id
   }
 
   get name () {
