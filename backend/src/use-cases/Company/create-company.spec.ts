@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import { CreateCompany } from './create-company'
 import { Company } from '../../entities/Company/company'
+import { InMemoryCompanyRepository } from '../../repositories/in-memory/in-memory-company-repository'
 
 describe('Create company', () => {
   it('should be able to create a company', () => {
-    const createCompany = new CreateCompany()
+    const companyRepository = new InMemoryCompanyRepository()
+    const createCompany = new CreateCompany(companyRepository)
 
     expect(createCompany.execute({
       name: 'Oasis Eventos',

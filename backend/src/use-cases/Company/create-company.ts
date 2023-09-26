@@ -1,3 +1,4 @@
+import { CompanyRepository } from '../../repositories/company-repository'
 import { Company } from '../../entities/Company/company'
 
 interface CreateCompanyRequest {
@@ -16,6 +17,10 @@ interface CreateCompanyRequest {
 type CreateCompanyResponse = Company
 
 export class CreateCompany {
+  constructor (
+    private companyRepository: CompanyRepository
+  ) { }
+
   async execute ({ name, email, CNPJ, phone, address, number, city, uf, complement, secret }: CreateCompanyRequest): Promise<CreateCompanyResponse> {
     const company = new Company({
       name,
@@ -29,6 +34,8 @@ export class CreateCompany {
       complement,
       secret
     })
+
+    await this.companyRepository.create(company)
 
     return company
   }
