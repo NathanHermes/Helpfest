@@ -27,6 +27,10 @@ export class Company {
     return this.props.name
   }
 
+  set name (name: string) {
+    this.props.name = name
+  }
+
   get email () {
     return this.props.email
   }
