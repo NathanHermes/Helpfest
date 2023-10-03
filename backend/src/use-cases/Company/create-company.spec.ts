@@ -22,9 +22,9 @@ describe('Create company', () => {
     })).resolves.toBeInstanceOf(Company)
   })
 
-  it('should not be able to create a company with null name', () => {
-    expect(createCompany.execute({
-      name: null,
+  describe('Company name validation', () => {
+    const company = new Company({
+      name: 'Oasis Eventos',
       email: 'oasis@gmail.com',
       CNPJ: '56041364000174',
       phone: '1136861256',
@@ -34,36 +34,23 @@ describe('Create company', () => {
       uf: 'SP',
       complement: '',
       secret: 'test'
-    })).rejects.toThrowError('Invalid company name')
-  })
+    })
 
-  it('should not be able to create a company with blank name', () => {
-    expect(createCompany.execute({
-      name: '',
-      email: 'oasis@gmail.com',
-      CNPJ: '56041364000174',
-      phone: '1136861256',
-      address: 'Rod. Washington Luís',
-      number: '',
-      city: 'São Carlos',
-      uf: 'SP',
-      complement: '',
-      secret: 'test'
-    })).rejects.toThrowError('Invalid company name')
-  })
+    it('should not be able to create a company with null name', () => {
+      company.name = null
 
-  it('should not be able to create a company with white space name', () => {
-    expect(createCompany.execute({
-      name: '  ',
-      email: 'oasis@gmail.com',
-      CNPJ: '56041364000174',
-      phone: '1136861256',
-      address: 'Rod. Washington Luís',
-      number: '',
-      city: 'São Carlos',
-      uf: 'SP',
-      complement: '',
-      secret: 'test'
-    })).rejects.toThrowError('Invalid company name')
+      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company name')
+    })
+
+    it('should not be able to create a company with blank name', () => {
+      company.name = ''
+
+      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company name')
+    })
+
+    it('should not be able to create a company with white space name', () => {
+      company.name = '   '
+      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company name')
+    })
   })
 })
