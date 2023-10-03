@@ -22,7 +22,7 @@ export class CreateCompany {
   ) { }
 
   async execute ({ name, email, CNPJ, phone, address, number, city, uf, complement, secret }: CreateCompanyRequest): Promise<CreateCompanyResponse> {
-    if (name === null || name === '') throw new Error('Invalid company name')
+    if (name === null || name.trim() === '') throw new Error('Invalid company name')
 
     const company = new Company({
       name,
