@@ -36,4 +36,19 @@ describe('Create company', () => {
       secret: 'test'
     })).rejects.toThrowError('Invalid company name')
   })
+
+  it('should not be able to create a company with blank name', () => {
+    expect(createCompany.execute({
+      name: '',
+      email: 'oasis@gmail.com',
+      CNPJ: '56041364000174',
+      phone: '1136861256',
+      address: 'Rod. Washington Luís',
+      number: '',
+      city: 'São Carlos',
+      uf: 'SP',
+      complement: '',
+      secret: 'test'
+    })).rejects.toThrowError('Invalid company name')
+  })
 })
