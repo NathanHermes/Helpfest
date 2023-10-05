@@ -51,4 +51,17 @@ describe('Create company', () => {
       expect(createCompany.execute(company)).rejects.toThrowError('Invalid company name length')
     })
   })
+
+  describe('Company email validation', () => {
+    const company: CreateCompanyRequest = {
+      name: 'Oasis Eventos', email: '', CNPJ: '', phone: '', address: '', number: '', city: '', uf: '', complement: '', secret: ''
+    }
+
+    it('should not be able to create a company with null email', () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      company.email = null
+      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company email')
+    })
+  })
 })
