@@ -1,7 +1,7 @@
 import { CompanyRepository } from '../../repositories/company-repository'
 import { Company } from '../../entities/Company/company'
 
-interface CreateCompanyRequest {
+export interface CreateCompanyRequest {
   name: string
   email: string
   CNPJ: string
@@ -24,6 +24,7 @@ export class CreateCompany {
   async execute ({ name, email, CNPJ, phone, address, number, city, uf, complement, secret }: CreateCompanyRequest): Promise<CreateCompanyResponse> {
     if (name === null || name.trim() === '') throw new Error('Invalid company name')
     if (name.length <= 3) throw new Error('Invalid company name length')
+    if (email === null) throw new Error('Invalid company email')
 
     const company = new Company({
       name,
