@@ -63,5 +63,10 @@ describe('Create company', () => {
       company.email = null
       expect(createCompany.execute(company)).rejects.toThrowError('Invalid company email')
     })
+
+    it('should not be able to create a company with blank email', () => {
+      company.email = ''
+      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company email')
+    })
   })
 })
