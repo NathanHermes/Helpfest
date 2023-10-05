@@ -35,6 +35,10 @@ export class Company {
     return this.props.email
   }
 
+  set email (email: string) {
+    this.props.email = email
+  }
+
   get CNPJ () {
     return this.props.CNPJ
   }
