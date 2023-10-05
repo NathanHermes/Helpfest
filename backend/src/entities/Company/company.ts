@@ -15,8 +15,13 @@ export interface CompanyProps {
 export class Company {
   private props: CompanyProps
 
-  constructor (props: CompanyProps) {
-    this.props = props
+  constructor (props: object) {
+    if (props instanceof Company)
+      this.props = props
+    else
+      this.props = {
+        name: '', email: '', CNPJ: '', phone: '', address: '', number: '', city: '', uf: '', complement: '', secret: ''
+      }
   }
 
   get id () {
