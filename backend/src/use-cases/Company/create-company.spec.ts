@@ -96,5 +96,10 @@ describe('Create company', () => {
       company.CNPJ = null
       expect(createCompany.execute(company)).rejects.toThrowError('Invalid company CNPJ')
     })
+
+    it('should not be able to create a company with blank CNPJ', () => {
+      company.CNPJ = ''
+      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company CNPJ')
+    })
   })
 })
