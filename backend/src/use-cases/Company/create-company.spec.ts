@@ -78,5 +78,10 @@ describe('Create company', () => {
       company.email = 'john_gmail.com'
       expect(createCompany.execute(company)).rejects.toThrowError('Invalid company email format')
     })
+
+    it('should not be able to create company email without domain', () => {
+      company.email = 'john@'
+      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company email format')
+    })
   })
 })
