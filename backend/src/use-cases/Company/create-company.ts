@@ -25,8 +25,11 @@ export class CreateCompany {
   async execute ({ name, email, CNPJ, phone, address, number, city, uf, complement, secret }: CreateCompanyRequest): Promise<CreateCompanyResponse> {
     if (name === null || name.trim() === '') throw new Error('Invalid company name')
     if (name.length <= 3) throw new Error('Invalid company name length')
+
     if (email === null || email.trim() === '') throw new Error('Invalid company email')
     if (!emailRegex.test(email)) throw new Error('Invalid company email format')
+
+    if (CNPJ === null) throw new Error('Invalid company CNPJ')
 
     const company = new Company({
       name,
