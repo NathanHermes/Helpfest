@@ -75,13 +75,26 @@ describe('Create company', () => {
     })
 
     it('should not be able to create a company with email without character @', () => {
-      company.email = 'john_gmail.com'
+      company.email = 'oasis_gmail.com'
       expect(createCompany.execute(company)).rejects.toThrowError('Invalid company email format')
     })
 
     it('should not be able to create company email without domain', () => {
-      company.email = 'john@'
+      company.email = 'oasis@'
       expect(createCompany.execute(company)).rejects.toThrowError('Invalid company email format')
+    })
+  })
+
+  describe('Company CNPJ validation', () => {
+    const company: CreateCompanyRequest = {
+      name: 'Oasis Eventos', email: 'oasis.eventos@gmail.com', CNPJ: '', phone: '', address: '', number: '', city: '', uf: '', complement: '', secret: ''
+    }
+
+    it('should not be able to create a company with null CNPJ', () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      company.CNPJ = null
+      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company CNPJ')
     })
   })
 })
