@@ -15,6 +15,7 @@ export interface CreateCompanyRequest {
 }
 
 type CreateCompanyResponse = Company
+const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
 export class CreateCompany {
   constructor (
@@ -25,7 +26,7 @@ export class CreateCompany {
     if (name === null || name.trim() === '') throw new Error('Invalid company name')
     if (name.length <= 3) throw new Error('Invalid company name length')
     if (email === null || email.trim() === '') throw new Error('Invalid company email')
-    if (!email.includes('@')) throw new Error('Invalid company email format')
+    if (!emailRegex.test(email)) throw new Error('Invalid company email format')
 
     const company = new Company({
       name,
