@@ -73,5 +73,10 @@ describe('Create company', () => {
       company.email = '   '
       expect(createCompany.execute(company)).rejects.toThrowError('Invalid company email')
     })
+
+    it('should not be able to create a company with email without character @', () => {
+      company.email = 'john_gmail.com'
+      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company email format')
+    })
   })
 })
