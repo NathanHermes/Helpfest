@@ -29,7 +29,7 @@ export class CreateCompany {
     if (email === null || email.trim() === '') throw new Error('Invalid company email')
     if (!emailRegex.test(email)) throw new Error('Invalid company email format')
 
-    if (CNPJ === null || CNPJ === '') throw new Error('Invalid company CNPJ')
+    if (CNPJ === null || CNPJ.trim() === '') throw new Error('Invalid company CNPJ')
 
     const company = new Company({
       name,
