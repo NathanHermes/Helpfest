@@ -28,6 +28,10 @@ export class Company {
     return this.props.id
   }
 
+  set id (id: string) {
+    this.props.id = id
+  }
+
   get name () {
     return this.props.name
   }
