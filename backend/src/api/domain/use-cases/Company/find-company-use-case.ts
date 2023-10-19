@@ -1,4 +1,3 @@
-import { InternalServerError } from '../../../utils/InternalServerError'
 import { Company } from '../../entities/Company/company'
 import { CompanyRepository } from './company-repository'
 
