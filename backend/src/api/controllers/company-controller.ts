@@ -9,7 +9,6 @@ export class CompanyController {
     this.findCompanyUseCase = new FindCompanyUseCase(this.repository)
   }
 
-
   findAllCompanies: HandlerFunction = async (request: Request, response: Response): Promise<Response | undefined> => {
     return response.status(200).json({
       'code': 200,
