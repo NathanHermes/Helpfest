@@ -9,7 +9,9 @@ export class FindCompanyUseCase {
     return this.repository.findAll()
   }
 
-  findOne (uuid: string): Company | undefined {
-    return this.repository.findOne(uuid)
+  async findOne (uuid: string): Promise<Company | undefined> {
+    const company = await this.repository.findOne(uuid)
+
+    return company
   }
 }
