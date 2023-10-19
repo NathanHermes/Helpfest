@@ -7,10 +7,10 @@ export class CompanyDao implements DAO<Company, string> {
   findAll (): Array<Company> {
     return this.companies
   }
-  findOne (uuid: string): Company | undefined {
-    const indexCompany = this.companies.findIndex(company => company.id === uuid)
+  async findOne (uuid: string): Promise<Company | undefined> {
+    const company = this.companies.find(company => company.id === uuid)
 
-    return indexCompany !== -1 ? this.companies[indexCompany] : undefined
+    return company
   }
   create (type: Company): Promise<string> {
     throw new Error('Method not implemented.')
