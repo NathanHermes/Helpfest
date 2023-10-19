@@ -2,11 +2,15 @@ import { Request, Response } from 'express'
 import { HandlerFunction } from '../../utils/resolver'
 import { FindCompanyUseCase } from '../domain/use-cases/Company/find-company-use-case'
 import { CompanyRepository } from '../domain/use-cases/Company/company-repository'
+import { CreateCompanyUseCase } from '../domain/use-cases/Company/create-company'
 
 export class CompanyController {
   private findCompanyUseCase: FindCompanyUseCase
+  private createCompanyUseCase: CreateCompanyUseCase
+
   constructor (private repository: CompanyRepository) {
     this.findCompanyUseCase = new FindCompanyUseCase(this.repository)
+    this.createCompanyUseCase = new CreateCompanyUseCase(this.repository)
   }
 
   findAllCompanies: HandlerFunction = async (request: Request, response: Response): Promise<Response | undefined> => {
@@ -32,8 +36,8 @@ export class CompanyController {
 
     return response.status(201).json({
       'code': 201,
-      'status': 'OK',
-      'data': await this.inMemoryCompanyRepository.create(body)
+      'status': 'Created',
+      'data': await this.createCompanyUseCase.execute(body)
     })
   }
 

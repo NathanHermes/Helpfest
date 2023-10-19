@@ -1,4 +1,4 @@
-import { CompanyRepository } from '../../repositories/company-repository'
+import { CompanyRepository } from '../../use-cases/Company/company-repository'
 import { Company } from '../../entities/Company/company'
 
 export interface CreateCompanyRequest {
@@ -17,12 +17,12 @@ export interface CreateCompanyRequest {
 type CreateCompanyResponse = Company
 const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
-export class CreateCompany {
+export class CreateCompanyUseCase {
   constructor (
-    private companyRepository: CompanyRepository
+    private repository: CompanyRepository
   ) { }
 
-  async execute ({ name, email, CNPJ, phone, address, number, city, uf, complement, secret }: CreateCompanyRequest): Promise<CreateCompanyResponse> {
+  async execute ({ name, email, CNPJ, phone, address, number, city, uf, complement, secret }: CreateCompanyRequest): Promise<CreateCompanyResponse | undefined> {
     if (name === null || name.trim() === '') throw new Error('Invalid company name')
     if (name.length <= 3) throw new Error('Invalid company name length')
 
@@ -44,8 +44,8 @@ export class CreateCompany {
       secret
     })
 
-    await this.companyRepository.create(company)
+    const uuid = await this.repository.create(company)
 
-    return company
+    return uuid !== undefined ? company : undefined
   }
 }

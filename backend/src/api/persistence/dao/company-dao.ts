@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto'
 import { Company } from '../../domain/entities/Company/company'
 import { DAO } from '../../utils/DAO'
 
@@ -8,13 +9,17 @@ export class CompanyDao implements DAO<Company, string> {
     return this.companies
   }
   async findOne (uuid: string): Promise<Company | undefined> {
-    const company = this.companies.find(company => company.id === uuid)
+    const company = this.companies.find(company => company._id === uuid)
 
     return company
   }
-  create (type: Company): Promise<string> {
-    throw new Error('Method not implemented.')
+  async create (company: Company): Promise<string> {
+    company._id = randomUUID()
+    const companyIndex = this.companies.push(company)
+
+    return this.companies[companyIndex - 1]._id || ''
   }
+
   update (key: string, type: Company): Promise<string> {
     throw new Error('Method not implemented.')
   }
