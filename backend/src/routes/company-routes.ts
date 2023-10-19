@@ -10,5 +10,5 @@ export const CompanyRoutes = Router()
 
 CompanyRoutes.get('/company/all', resolver(controller.findAllCompanies))
 CompanyRoutes.get('/company/:id', resolver(controller.findCompanyById))
-// CompanyRoutes.post('/company/create', resolver(createCompany))
+CompanyRoutes.post('/company/create', resolver(controller.createCompany))
 // CompanyRoutes.put('/company/update/:id', resolver(updateCompany))
