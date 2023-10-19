@@ -1,82 +1,96 @@
-export interface CompanyProps {
+export interface CompanyArgs {
   id?: string
-  name: string
-  email: string
-  CNPJ: string
-  phone: string
-  address: string
+  name?: string
+  email?: string
+  CNPJ?: string
+  phone?: string
+  address?: string
   number?: string
-  city: string
-  uf: string
+  city?: string
+  uf?: string
   complement?: string
-  secret: string
+  secret?: string
 }
 
 export class Company {
-  private props: CompanyProps
+  private id?: string
+  private name: string
+  private email: string
+  private CNPJ: string
+  private phone: string
+  private address: string
+  private number?: string
+  private city: string
+  private uf: string
+  private complement?: string
+  private secret: string
 
-  constructor (props: object) {
-    if (props instanceof Company)
-      this.props = props
-    else
-      this.props = {
-        name: '', email: '', CNPJ: '', phone: '', address: '', number: '', city: '', uf: '', complement: '', secret: ''
-      }
+  constructor (args?: CompanyArgs) {
+    this.name = args?.name || ''
+    this.email = args?.email || ''
+    this.CNPJ = args?.CNPJ || ''
+    this.phone = args?.phone || ''
+    this.address = args?.address || ''
+    this.number = args?.number
+    this.city = args?.city || ''
+    this.uf = args?.uf || ''
+    this.complement = args?.complement
+    this.secret = args?.secret || ''
   }
 
-  get id () {
-    return this.props.id
+  get _id (): string | undefined {
+    return this.id
   }
 
-  set id (id: string) {
-    this.props.id = id
+  set _id (id: string) {
+    this.id = id
   }
 
-  get name () {
-    return this.props.name
+  get _name () {
+    return this.name
   }
 
-  set name (name: string) {
-    this.props.name = name
+  set _name (name: string) {
+    this.name = name
   }
 
-  get email () {
-    return this.props.email
+  get _email () {
+    return this.email
   }
 
-  set email (email: string) {
-    this.props.email = email
+  set _email (email: string) {
+    this.email = email
   }
 
-  get CNPJ () {
-    return this.props.CNPJ
+  get _CNPJ () {
+    return this.CNPJ
   }
 
-  get phone () {
-    return this.props.phone
+  get _phone () {
+    return this.phone
   }
 
-  get address () {
-    return this.props.address
+  get _address () {
+    return this.address
   }
 
-  get number () {
-    return this.props.number
+  get _number () {
+    return this.number
   }
 
-  get city () {
-    return this.props.city
+  get _city () {
+    return this.city
   }
 
-  get uf () {
-    return this.props.uf
+  get _uf () {
+    return this.uf
   }
 
-  get complement () {
-    return this.props.complement
+  get _complement () {
+    return this.complement
   }
 
-  get secret () {
-    return this.props.secret
+  get _secret () {
+    return this.secret
   }
 }
