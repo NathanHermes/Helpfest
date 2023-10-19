@@ -1,6 +1,6 @@
 export interface DAO<T, K> {
   findAll (): Array<T>
-  findOne (key: K): T | undefined
+  findOne (key: K): Promise<T | undefined>
 
   create (type: T): Promise<K>
   update (key: K, type: T): Promise<K>
