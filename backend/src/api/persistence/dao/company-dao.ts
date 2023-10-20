@@ -9,19 +9,21 @@ export class CompanyDao implements DAO<Company, string> {
     return this.companies
   }
   async findOne (uuid: string): Promise<Company | undefined> {
-    const company = this.companies.find(company => company._id === uuid)
+    const company = this.companies.find(company => company._uuid === uuid)
 
     return company
   }
   async create (company: Company): Promise<string> {
-    company._id = randomUUID()
+    company._uuid = randomUUID()
     const companyIndex = this.companies.push(company)
 
-    return this.companies[companyIndex - 1]._id || ''
+    return this.companies[companyIndex - 1]._uuid || ''
   }
 
-  update (key: string, type: Company): Promise<string> {
-    throw new Error('Method not implemented.')
+  async update (uuid: string, company: Company): Promise<string> {
+    this.companies = this.companies.map(_company => _company._uuid === uuid ? company : _company)
+
+    return uuid
   }
   deleteByKey (key: string): Promise<Company> {
     throw new Error('Method not implemented.')

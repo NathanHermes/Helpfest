@@ -1,19 +1,24 @@
 import { Request, Response } from 'express'
+
 import { HandlerFunction } from '../../utils/resolver'
-import { FindCompanyUseCase } from '../domain/use-cases/Company/find-company-use-case'
 import { CompanyRepository } from '../domain/use-cases/Company/company-repository'
+
+import { FindCompanyUseCase } from '../domain/use-cases/Company/find-company'
 import { CreateCompanyUseCase } from '../domain/use-cases/Company/create-company'
+import { UpdateCompanyUseCase } from '../domain/use-cases/Company/update-company'
 
 export class CompanyController {
   private findCompanyUseCase: FindCompanyUseCase
   private createCompanyUseCase: CreateCompanyUseCase
+  private updateCompanyUseCase: UpdateCompanyUseCase
 
   constructor (private repository: CompanyRepository) {
     this.findCompanyUseCase = new FindCompanyUseCase(this.repository)
     this.createCompanyUseCase = new CreateCompanyUseCase(this.repository)
+    this.updateCompanyUseCase = new UpdateCompanyUseCase(this.repository)
   }
 
-  findAllCompanies: HandlerFunction = async (request: Request, response: Response): Promise<Response | undefined> => {
+  findAllCompanies: HandlerFunction = async (request: Request, response: Response): Promise<Response> => {
     return response.status(200).json({
       'code': 200,
       'status': 'OK',
@@ -21,38 +26,43 @@ export class CompanyController {
     })
   }
 
-  findCompanyById: HandlerFunction = async (request: Request, response: Response): Promise<Response | undefined> => {
-    const { id: companyID } = request.params
+  findCompanyById: HandlerFunction = async (request: Request, response: Response): Promise<Response> => {
+    const { uuid: companyID } = request.params
+
+    const _response = await this.findCompanyUseCase.findOne(companyID)
 
     return response.status(200).json({
       'code': 200,
       'status': 'OK',
-      'data': this.findCompanyUseCase.findOne(companyID) || 'Nenhum registro encontrado'
+      'data': _response || 'Nenhum registro encontrado'
     })
   }
 
-  createCompany: HandlerFunction = async (request: Request, response: Response): Promise<Response | undefined> => {
+  createCompany: HandlerFunction = async (request: Request, response: Response): Promise<Response> => {
     const body = request.body
+
+    const _response = await this.createCompanyUseCase.execute(body)
 
     return response.status(201).json({
       'code': 201,
       'status': 'Created',
-      'data': await this.createCompanyUseCase.execute(body)
+      'data': _response
     })
   }
 
-  updateCompany: HandlerFunction = async (request: Request, response: Response): Promise<Response | undefined> => {
-    const { id: companyID } = request.params
+  updateCompany: HandlerFunction = async (request: Request, response: Response): Promise<Response> => {
     const body = request.body
 
-    return response.status(201).json({
-      'code': 201,
+    const _response = await this.updateCompanyUseCase.execute(body)
+
+    return response.status(200).json({
+      'code': 200,
       'status': 'OK',
-      'data': (await this.inMemoryCompanyRepository.update(companyID, body)).toString()
+      'data': _response
     })
   }
 
-  deleteCompany: HandlerFunction = async (request: Request, response: Response): Promise<Response | undefined> => {
-
+  deleteCompany: HandlerFunction = async (request: Request, response: Response): Promise<Response> => {
+    throw new Error('Function not implemented')
   }
 }

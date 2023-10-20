@@ -25,8 +25,10 @@ export class InMemoryCompanyRepository implements CompanyRepository {
     return uuid
   }
 
-  update (key: string, type: Company): Promise<string> {
-    throw new Error('Method not implemented.')
+  async update (uuid: string, company: Company): Promise<string> {
+    const _uuid = await this.dao.update(uuid, company)
+
+    return _uuid
   }
   deleteByKey (key: string): Promise<Company> {
     throw new Error('Method not implemented.')
