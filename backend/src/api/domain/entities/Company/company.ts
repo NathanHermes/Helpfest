@@ -1,5 +1,5 @@
 export interface CompanyArgs {
-  id?: string
+  uuid?: string
   name?: string
   email?: string
   CNPJ?: string
@@ -13,7 +13,7 @@ export interface CompanyArgs {
 }
 
 export class Company {
-  private id?: string
+  private uuid?: string
   private name: string
   private email: string
   private CNPJ: string
@@ -26,6 +26,7 @@ export class Company {
   private secret: string
 
   constructor (args?: CompanyArgs) {
+    this.uuid = args?.uuid
     this.name = args?.name || ''
     this.email = args?.email || ''
     this.CNPJ = args?.CNPJ || ''
@@ -38,12 +39,12 @@ export class Company {
     this.secret = args?.secret || ''
   }
 
-  get _id (): string | undefined {
-    return this.id
+  get _uuid (): string | undefined {
+    return this.uuid
   }
 
-  set _id (id: string) {
-    this.id = id
+  set _uuid (uuid: string) {
+    this.uuid = uuid
   }
 
   get _name () {
