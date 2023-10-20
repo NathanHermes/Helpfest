@@ -15,8 +15,8 @@ dependencies:
     specifier: ^4.18.2
     version: 4.18.2
   zod:
-    specifier: 3.20.4-beta.0
-    version: 3.20.4-beta.0
+    specifier: '>=3.22.3'
+    version: 3.22.4
 
 devDependencies:
   '@types/node':
@@ -2419,6 +2419,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zod@3.20.4-beta.0:
-    resolution: {integrity: sha512-6axq/qksLzzxRzin107kkRQvteZYyHl2tBxxzUJ9t6xT4R+tgWu6Dli6NLFTMnk16ZoF9tNAg8WLrFu6+gNruw==}
+  /zod@3.22.4:
+    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: false
