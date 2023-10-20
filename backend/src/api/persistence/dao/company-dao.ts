@@ -25,9 +25,7 @@ export class CompanyDao implements DAO<Company, string> {
 
     return uuid
   }
-  deleteByKey (key: string): Promise<Company> {
-    throw new Error('Method not implemented.')
-  }
+
   delete (type: Company): Promise<Company> {
     throw new Error('Method not implemented.')
   }

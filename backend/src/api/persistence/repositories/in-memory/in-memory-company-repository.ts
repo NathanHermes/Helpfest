@@ -30,9 +30,7 @@ export class InMemoryCompanyRepository implements CompanyRepository {
 
     return _uuid
   }
-  deleteByKey (key: string): Promise<Company> {
-    throw new Error('Method not implemented.')
-  }
+
   delete (type: Company): Promise<Company> {
     throw new Error('Method not implemented.')
   }

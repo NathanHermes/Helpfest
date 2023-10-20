@@ -6,6 +6,5 @@ export interface CompanyRepository {
 
   create (company: Company): Promise<string>
   update (uuid: string, company: Company): Promise<string>
-  deleteByKey (uuid: string): Promise<Company>
   delete (company: Company): Promise<Company>
 }
