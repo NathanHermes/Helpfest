@@ -31,7 +31,9 @@ export class InMemoryCompanyRepository implements CompanyRepository {
     return _uuid
   }
 
-  delete (type: Company): Promise<Company> {
-    throw new Error('Method not implemented.')
+  async delete (company: Company): Promise<Company> {
+    const result = await this.dao.delete(company)
+
+    return result
   }
 }

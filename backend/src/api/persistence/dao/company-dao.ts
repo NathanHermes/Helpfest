@@ -26,7 +26,9 @@ export class CompanyDao implements DAO<Company, string> {
     return uuid
   }
 
-  delete (type: Company): Promise<Company> {
-    throw new Error('Method not implemented.')
+  async delete (company: Company): Promise<Company> {
+    this.companies = this.companies.filter(_company => _company !== company)
+
+    return company
   }
 }

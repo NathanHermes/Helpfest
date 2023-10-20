@@ -6,16 +6,19 @@ import { CompanyRepository } from '../domain/use-cases/Company/company-repositor
 import { FindCompanyUseCase } from '../domain/use-cases/Company/find-company'
 import { CreateCompanyUseCase } from '../domain/use-cases/Company/create-company'
 import { UpdateCompanyUseCase } from '../domain/use-cases/Company/update-company'
+import { DeleteCompanyUseCase } from '../domain/use-cases/Company/delete-company'
 
 export class CompanyController {
   private findCompanyUseCase: FindCompanyUseCase
   private createCompanyUseCase: CreateCompanyUseCase
   private updateCompanyUseCase: UpdateCompanyUseCase
+  private deleteCompanyUseCase: DeleteCompanyUseCase
 
   constructor (private repository: CompanyRepository) {
     this.findCompanyUseCase = new FindCompanyUseCase(this.repository)
     this.createCompanyUseCase = new CreateCompanyUseCase(this.repository)
     this.updateCompanyUseCase = new UpdateCompanyUseCase(this.repository)
+    this.deleteCompanyUseCase = new DeleteCompanyUseCase(this.repository)
   }
 
   findAllCompanies: HandlerFunction = async (request: Request, response: Response): Promise<Response> => {
@@ -63,6 +66,14 @@ export class CompanyController {
   }
 
   deleteCompany: HandlerFunction = async (request: Request, response: Response): Promise<Response> => {
-    throw new Error('Function not implemented')
+    const body = request.body
+
+    const _response = await this.deleteCompanyUseCase.execute(body)
+
+    return response.status(200).json({
+      'code': 200,
+      'status': 'OK',
+      'data': _response
+    })
   }
 }
