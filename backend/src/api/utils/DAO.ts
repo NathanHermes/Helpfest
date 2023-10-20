@@ -4,6 +4,5 @@ export interface DAO<T, K> {
 
   create (type: T): Promise<K>
   update (key: K, type: T): Promise<K>
-  deleteByKey (key: K): Promise<T>
   delete (type: T): Promise<T>
 }
