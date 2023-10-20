@@ -11,8 +11,8 @@ app.listen(3001, () => {
 
 /* Middleware de tratamento de error */
 app.use((error, req, res, next: NextFunction) => {
-  if (error && error.statusCode) {
-    res.status(error.statusCode).json({
+  if (error /*&& error.statusCode*/) {
+    res.status(500/*error.statusCode*/).json({
       statusCode: error.statusCode,
       message: error.message
     })
