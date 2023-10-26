@@ -8,11 +8,19 @@ export class CompanyDao implements DAO<Company, string> {
   findAll (): Array<Company> {
     return this.companies
   }
+
   async findOne (uuid: string): Promise<Company | undefined> {
     const company = this.companies.find(company => company._uuid === uuid)
 
     return company
   }
+
+  async SelectByEmail (email: string): Promise<Company | undefined> {
+    const company = this.companies.find(_company => _company._email === email)
+
+    return company
+  }
+
   async create (company: Company): Promise<string> {
     company._uuid = randomUUID()
     const companyIndex = this.companies.push(company)
