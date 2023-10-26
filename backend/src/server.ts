@@ -1,9 +1,11 @@
 import express, { NextFunction } from 'express'
 import { CompanyRoutes } from './routes/company-routes'
+import { PartyRoutes } from './routes/party-routes'
 
 const app = express()
 app.use(express.json())
 app.use(CompanyRoutes)
+app.use(PartyRoutes)
 
 app.listen(3001, () => {
   console.log('Server running on port 3001')
