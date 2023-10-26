@@ -30,7 +30,7 @@ export class CompanyController {
   }
 
   findCompanyById: HandlerFunction = async (request: Request, response: Response): Promise<Response> => {
-    const { uuid: companyID } = request.params
+    const { uuid: companyID } = request.body
 
     const _response = await this.findCompanyUseCase.findOne(companyID)
 

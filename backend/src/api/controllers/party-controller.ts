@@ -30,7 +30,7 @@ export class PartyController {
   }
 
   findPartyById: HandlerFunction = async (request: Request, response: Response): Promise<Response> => {
-    const { uuid: partyID } = request.params
+    const { uuid: partyID } = request.body
 
     const _response = await this.findPartyUseCase.findOne(partyID)
 

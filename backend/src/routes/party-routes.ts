@@ -8,8 +8,8 @@ const controller = new PartyController(repository)
 
 export const PartyRoutes = Router()
 
-PartyRoutes.get('/company/all', resolver(controller.findAllParties))
-PartyRoutes.get('/company/:uuid', resolver(controller.findPartyById))
-PartyRoutes.post('/company/create', resolver(controller.createParty))
-PartyRoutes.put('/company/update', resolver(controller.updateParty))
-PartyRoutes.delete('/company/delete', resolver(controller.deleteParty))
+PartyRoutes.get('/party/all', resolver(controller.findAllParties))
+PartyRoutes.get('/party/by', resolver(controller.findPartyById))
+PartyRoutes.post('/party/create', resolver(controller.createParty))
+PartyRoutes.put('/party/update', resolver(controller.updateParty))
+PartyRoutes.delete('/party/delete', resolver(controller.deleteParty))

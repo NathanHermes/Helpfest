@@ -9,7 +9,7 @@ const controller = new CompanyController(repository)
 export const CompanyRoutes = Router()
 
 CompanyRoutes.get('/company/all', resolver(controller.findAllCompanies))
-CompanyRoutes.get('/company/:uuid', resolver(controller.findCompanyById))
+CompanyRoutes.get('/company/by', resolver(controller.findCompanyById))
 CompanyRoutes.post('/company/create', resolver(controller.createCompany))
 CompanyRoutes.put('/company/update', resolver(controller.updateCompany))
 CompanyRoutes.delete('/company/delete', resolver(controller.deleteCompany))
