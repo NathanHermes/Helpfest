@@ -6,13 +6,14 @@ export class CreatePartyUseCase {
     private repository: PartyRepository
   ) { }
 
-  async execute ({ name, partyDate, partyTime, celebrities, observations }: PartyArgs): Promise<string | undefined> {
+  async execute ({ name, partyDate, partyTime, celebrities, observations, uuidCompany }: PartyArgs): Promise<string | undefined> {
     const party = new Party({
       name,
       partyDate,
       partyTime,
       celebrities,
-      observations
+      observations,
+      uuidCompany
     })
 
     const uuid = await this.repository.create(party)

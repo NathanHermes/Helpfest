@@ -6,14 +6,15 @@ export class UpdatePartyUseCase {
     private repository: PartyRepository
   ) { }
 
-  async execute ({ uuid, name, partyDate, partyTime, celebrities, observations }: PartyArgs): Promise<string | undefined> {
+  async execute ({ uuid, name, partyDate, partyTime, celebrities, observations, uuidCompany }: PartyArgs): Promise<string | undefined> {
     const party = new Party({
       uuid,
       name,
       partyDate,
       partyTime,
       celebrities,
-      observations
+      observations,
+      uuidCompany
     })
 
     const _uuid = await this.repository.update(uuid!, party)
