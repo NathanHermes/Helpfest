@@ -5,6 +5,7 @@ export interface PartyArgs {
   partyTime?: string
   celebrities?: string
   observations?: string
+  uuidCompany?: string
 }
 
 export class Party {
@@ -14,6 +15,7 @@ export class Party {
   private partyTime: string
   private celebrities?: string
   private observations?: string
+  private uuidCompany: string
 
   constructor (args?: PartyArgs) {
     this.uuid = args?.uuid
@@ -22,10 +24,10 @@ export class Party {
     this.partyTime = args?.partyTime || ''
     this.celebrities = args?.celebrities
     this.observations = args?.observations
+    this.uuidCompany = args?.uuidCompany || ''
   }
 
   get _uuid (): string | undefined { return this.uuid }
-
   set _uuid (uuid: string) { this.uuid = uuid }
 
   get _name () { return this.name }
@@ -37,4 +39,6 @@ export class Party {
   get _celebrities () { return this.celebrities }
 
   get _observations () { return this.observations }
+
+  get _uuidCompany () { return this.uuidCompany }
 }
