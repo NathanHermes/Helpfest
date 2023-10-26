@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { CreateCompany, CreateCompanyRequest } from './create-company'
-import { Company } from '../../entities/Company/company'
+import { Company } from '../../entities/company'
 import { InMemoryCompanyRepository } from '../../repositories/in-memory/in-memory-company-repository'
 
 const companyRepository = new InMemoryCompanyRepository()

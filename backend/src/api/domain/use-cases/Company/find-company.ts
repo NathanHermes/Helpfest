@@ -1,4 +1,4 @@
-import { Company } from '../../entities/Company/company'
+import { Company } from '../../entities/company'
 import { CompanyRepository } from './company-repository'
 
 export class FindCompanyUseCase {

@@ -1,5 +1,5 @@
 import { CompanyRepository } from '../../use-cases/Company/company-repository'
-import { Company, CompanyArgs } from '../../entities/Company/company'
+import { Company, CompanyArgs } from '../../entities/company'
 
 const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 

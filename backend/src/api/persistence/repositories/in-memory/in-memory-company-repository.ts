@@ -1,4 +1,4 @@
-import { Company } from '../../../domain/entities/Company/company'
+import { Company } from '../../../domain/entities/company'
 import { CompanyRepository } from '../../../domain/use-cases/Company/company-repository'
 import { CompanyDao } from '../../dao/company-dao'
 
