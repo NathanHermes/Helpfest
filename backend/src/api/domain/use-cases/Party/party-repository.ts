@@ -1,4 +1,4 @@
-import { Party } from '../../entities/Party/party'
+import { Party } from '../../entities/party'
 
 export interface PartyRepository {
   findAll (): Array<Party>

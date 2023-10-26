@@ -1,4 +1,4 @@
-import { Party } from '../../entities/Party/party'
+import { Party } from '../../entities/party'
 import { PartyRepository } from './party-repository'
 
 export class FindPartyUseCase {

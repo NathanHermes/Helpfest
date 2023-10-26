@@ -1,4 +1,4 @@
-import { Party } from '../../domain/entities/Party/party'
+import { Party } from '../../domain/entities/party'
 import { DAO } from '../../utils/DAO'
 import { randomUUID } from 'crypto'
 

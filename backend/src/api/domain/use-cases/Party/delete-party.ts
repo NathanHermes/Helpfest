@@ -1,4 +1,4 @@
-import { Party, PartyArgs } from '../../entities/Party/party'
+import { Party, PartyArgs } from '../../entities/party'
 import { PartyRepository } from './party-repository'
 
 export class DeletePartyUseCase {
