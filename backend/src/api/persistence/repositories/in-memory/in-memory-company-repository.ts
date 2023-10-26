@@ -19,6 +19,12 @@ export class InMemoryCompanyRepository implements CompanyRepository {
     return company
   }
 
+  async findOneByEmail (email: string): Promise<Company | undefined> {
+    const company = await this.dao.SelectByEmail(email)
+
+    return company
+  }
+
   async create (company: Company): Promise<string> {
     const uuid = await this.dao.create(company)
 
