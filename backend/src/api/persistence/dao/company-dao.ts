@@ -1,0 +1,42 @@
+import { randomUUID } from 'crypto'
+import { Company } from '../../domain/entities/company'
+import { DAO } from '../../utils/DAO'
+
+export class CompanyDao implements DAO<Company, string> {
+  private companies: Array<Company> = new Array<Company>
+
+  findAll (): Array<Company> {
+    return this.companies
+  }
+
+  async findOne (uuid: string): Promise<Company | undefined> {
+    const company = this.companies.find(company => company._uuid === uuid)
+
+    return company
+  }
+
+  async SelectByEmail (email: string): Promise<Company | undefined> {
+    const company = this.companies.find(_company => _company._email === email)
+
+    return company
+  }
+
+  async create (company: Company): Promise<string> {
+    company._uuid = randomUUID()
+    const companyIndex = this.companies.push(company)
+
+    return this.companies[companyIndex - 1]._uuid || ''
+  }
+
+  async update (uuid: string, company: Company): Promise<string> {
+    this.companies = this.companies.map(_company => _company._uuid === uuid ? company : _company)
+
+    return uuid
+  }
+
+  async delete (company: Company): Promise<Company> {
+    this.companies = this.companies.filter(_company => _company !== company)
+
+    return company
+  }
+}

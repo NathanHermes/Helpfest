@@ -1,23 +1,45 @@
-import { Company } from '../../../domain/entities/Company/company'
-import { CompanyDao } from '../../dao/companyDAO'
+import { Company } from '../../../domain/entities/company'
+import { CompanyRepository } from '../../../domain/use-cases/Company/company-repository'
+import { CompanyDao } from '../../dao/company-dao'
 
-export class InMemoryCompanyRepository implements CompanyDao {
-  findAll (): Company[] {
-    throw new Error('Method not implemented.')
+export class InMemoryCompanyRepository implements CompanyRepository {
+  private dao: CompanyDao
+
+  constructor () {
+    this.dao = new CompanyDao()
   }
-  findOne (key: string): Company | undefined {
-    throw new Error('Method not implemented.')
+
+  findAll (): Array<Company> {
+    return this.dao.findAll()
   }
-  create (type: Company): Promise<string> {
-    throw new Error('Method not implemented.')
+
+  async findOne (uuid: string): Promise<Company | undefined> {
+    const company = await this.dao.findOne(uuid)
+
+    return company
   }
-  update (key: string, type: Company): Promise<string> {
-    throw new Error('Method not implemented.')
+
+  async findOneByEmail (email: string): Promise<Company | undefined> {
+    const company = await this.dao.SelectByEmail(email)
+
+    return company
   }
-  deleteByKey (key: string): Promise<Company> {
-    throw new Error('Method not implemented.')
+
+  async create (company: Company): Promise<string> {
+    const uuid = await this.dao.create(company)
+
+    return uuid
   }
-  delete (type: Company): Promise<Company> {
-    throw new Error('Method not implemented.')
+
+  async update (uuid: string, company: Company): Promise<string> {
+    const _uuid = await this.dao.update(uuid, company)
+
+    return _uuid
+  }
+
+  async delete (company: Company): Promise<Company> {
+    const result = await this.dao.delete(company)
+
+    return result
   }
 }
