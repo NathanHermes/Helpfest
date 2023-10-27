@@ -1,8 +1,7 @@
-export function App () {
+import { Outlet } from 'react-router-dom'
 
+export function App () {
   return (
-    <>
-      <h1>Hello HelpFest</h1>
-    </>
+    <Outlet />
   )
 }
