@@ -7,18 +7,34 @@ import { FindCompanyUseCase } from '../domain/use-cases/Company/find-company'
 import { CreateCompanyUseCase } from '../domain/use-cases/Company/create-company'
 import { UpdateCompanyUseCase } from '../domain/use-cases/Company/update-company'
 import { DeleteCompanyUseCase } from '../domain/use-cases/Company/delete-company'
+import { LoginUseCase } from '../domain/use-cases/Company/login-company'
 
 export class CompanyController {
+  private loginUseCase: LoginUseCase
   private findCompanyUseCase: FindCompanyUseCase
   private createCompanyUseCase: CreateCompanyUseCase
   private updateCompanyUseCase: UpdateCompanyUseCase
   private deleteCompanyUseCase: DeleteCompanyUseCase
 
   constructor (private repository: CompanyRepository) {
+    this.loginUseCase = new LoginUseCase(this.repository)
     this.findCompanyUseCase = new FindCompanyUseCase(this.repository)
     this.createCompanyUseCase = new CreateCompanyUseCase(this.repository)
     this.updateCompanyUseCase = new UpdateCompanyUseCase(this.repository)
     this.deleteCompanyUseCase = new DeleteCompanyUseCase(this.repository)
+  }
+
+  login: HandlerFunction = async (request: Request, response: Response): Promise<Response> => {
+    const { email, secret } = request.body
+
+    const _response = await this.loginUseCase.execute(email, secret)
+
+    return response.status(200).json({
+      'code': 200,
+      'status': 'OK',
+      'token': _response,
+      'expire-time': '4h'
+    })
   }
 
   findAllCompanies: HandlerFunction = async (request: Request, response: Response): Promise<Response> => {
