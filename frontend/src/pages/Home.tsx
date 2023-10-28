@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export const Home = () => {
   const navigate = useNavigate()
@@ -11,10 +11,10 @@ export const Home = () => {
   })
 
   return (
-    <main className='bg-violet-500'>
-      <h1>Bem Vindo(a) ao HelpFest ...</h1>
-      <p>Estamos em desenvolvimento, agradeçemos sua visita</p>
-      <p>Volte novamente mais tarde.</p>
-    </main>
+    <main className='w-full h-screen flex flex-col items-center justify-center text-purple-600'>
+      <h1 className='text-3xl'>Bem Vindo(a) ao <strong>HELPFEST</strong> ...</h1>
+      <p className='text-zinc-500' > Estamos em desenvolvimento, agradeçemos sua visita</p>
+      <p className='text-zinc-500'>Volte novamente mais tarde.</p>
+    </main >
   )
 }
