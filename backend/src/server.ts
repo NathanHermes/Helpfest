@@ -1,8 +1,10 @@
 import express, { NextFunction } from 'express'
+import cors from 'cors'
 import { CompanyRoutes } from './routes/company-routes'
 import { PartyRoutes } from './routes/party-routes'
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 app.use(CompanyRoutes)
 app.use(PartyRoutes)
