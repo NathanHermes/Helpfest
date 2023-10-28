@@ -19,7 +19,7 @@ export const Login = () => {
   })
 
   const handleLogin = (data: LoginFormData) => {
-
+    console.log(data)
   }
 
   return (
