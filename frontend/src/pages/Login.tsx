@@ -14,7 +14,6 @@ export const Login = () => {
     formState: { errors },
     handleSubmit,
     register,
-    reset,
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema)
   })
