@@ -3,6 +3,7 @@ import { App } from './App'
 import { Login } from './pages/Login'
 import { Home } from './pages/Home'
 import { Loading } from './pages/Loading'
+import { Register } from './pages/Register'
 
 export const routes = createBrowserRouter([
   {
@@ -10,7 +11,8 @@ export const routes = createBrowserRouter([
     children: [
       { path: '/', element: <Loading /> },
       { path: '/login', element: <Login /> },
-      { path: '/home', element: <Home /> }
+      { path: '/home', element: <Home /> },
+      { path: '/register', element: <Register /> }
     ]
   }
 ])
