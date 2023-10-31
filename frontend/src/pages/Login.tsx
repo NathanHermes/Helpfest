@@ -5,7 +5,8 @@ import { z } from 'zod'
 
 import { login } from '@/api/company'
 import { Checkbox } from '@/components/ui/checkbox'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { validateAuth } from '@/utils/validate-auth'
 
 const loginSchema = z.object({
   email: z.string().min(1, 'Campo obrigatório').email('Email inválido'),
@@ -17,7 +18,6 @@ type LoginFormData = z.infer<typeof loginSchema>
 export const Login = () => {
   const navigate = useNavigate()
   const [secretInputType, setSecretInputType] = useState('password')
-
   const {
     formState: { errors },
     handleSubmit,
@@ -26,17 +26,21 @@ export const Login = () => {
     resolver: zodResolver(loginSchema)
   })
 
+  useEffect(() => {
+    validateAuth(navigate)
+  }, [])
+
   const handleCheckbox = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const ariaChecked = event.currentTarget.ariaChecked
 
-    if (ariaChecked === 'true') setSecretInputType('text')
+    if (ariaChecked === 'false') setSecretInputType('text')
     else setSecretInputType('password')
   }
 
   const handleLogin = (data: LoginFormData) => {
     login(data)
       .then(() => {
-        localStorage.setItem('isLogged', 'true')
+        sessionStorage.setItem('isLogged', 'true')
         navigate('/home')
       })
       .catch((error) => {
@@ -90,7 +94,8 @@ export const Login = () => {
         </form>
 
         <div className='flex items-center justify-center gap-2 text-sm'>
-          <span>Não possui uma conta?</span> <Link to={'/register'} className='underline underline-offset-2 font-bold text-violet-600'>Crie sua conta</Link>
+          <span>Não possui uma conta?</span>
+          <Link to={'/register'} className='underline underline-offset-2 font-bold text-violet-600'>Crie sua conta</Link>
         </div>
       </section>
     </main>
