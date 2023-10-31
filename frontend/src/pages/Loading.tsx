@@ -1,3 +1,4 @@
+import { validateAuth } from '@/utils/validate-auth'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -5,19 +6,8 @@ export const Loading = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    async function validate () {
-      const isLogged = localStorage.getItem('isLogged')
-
-      await new Promise(
-        resolve => setTimeout(resolve, 1000)
-      )
-
-      if (isLogged === null) navigate('/login')
-      else navigate('/home')
-    }
-
-    validate()
-  })
+    validateAuth(navigate)
+  }, [])
 
   return (
     <main className='w-full h-screen flex items-center justify-center bg-purple-600'>
