@@ -26,7 +26,7 @@ export const Register = () => {
   })
 
   useEffect(() => {
-    validateAuth(navigate)
+    validateAuth(navigate, '/register')
   }, [])
 
   const handleLogin = (data: LoginFormData) => {

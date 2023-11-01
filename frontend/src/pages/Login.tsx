@@ -27,7 +27,7 @@ export const Login = () => {
   })
 
   useEffect(() => {
-    validateAuth(navigate)
+    validateAuth(navigate, '/login')
   }, [])
 
   const handleCheckbox = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
