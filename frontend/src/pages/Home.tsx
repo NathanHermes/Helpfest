@@ -1,14 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import { validateAuth } from '@/utils/validate-auth'
 
 export const Home = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const isLogged = localStorage.getItem('isLogged')
-
-    if (isLogged === null) navigate('/loading')
-  })
+    validateAuth(navigate, '/login')
+  }, [])
 
   return (
     <main className='w-full h-screen flex flex-col items-center justify-center text-purple-600'>
