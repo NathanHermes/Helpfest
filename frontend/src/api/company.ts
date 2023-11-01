@@ -5,8 +5,28 @@ export interface LoginModel {
   secret: string
 }
 
-export async function login (login: LoginModel) {
+export interface CompanyModel {
+  uuid?: string
+  name: string
+  email: string
+  CNPJ: string
+  phone: string
+  address: string
+  number?: string
+  city: string
+  uf: string
+  complement?: string
+  secret: string
+}
+
+export const login = async (login: LoginModel) => {
   await api.post('/login', {
     ...login
+  })
+}
+
+export const saveCompany = async (company: CompanyModel) => {
+  await api.post('/company/create', {
+    ...company
   })
 }
