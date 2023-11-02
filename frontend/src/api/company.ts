@@ -20,13 +20,13 @@ export interface CompanyModel {
 }
 
 export const login = async (login: LoginModel) => {
-  await api.post('/login', {
+  return await api.post('/login', {
     ...login
   })
 }
 
 export const saveCompany = async (company: CompanyModel) => {
-  await api.post('/company/create', {
+  return await api.post('/company/create', {
     ...company
   })
 }
