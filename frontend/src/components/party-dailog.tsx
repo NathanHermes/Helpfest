@@ -42,6 +42,7 @@ export const PartyDailog = ({ party }: PartyDailogArgs) => {
 
   const handleUpdate = (data: PartyFormData) => {
     console.log(data)
+    setIsShow(!isShow)
   }
 
   return (
