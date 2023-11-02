@@ -39,8 +39,9 @@ export const Login = () => {
 
   const handleLogin = (data: LoginFormData) => {
     login(data)
-      .then(() => {
+      .then((response) => {
         sessionStorage.setItem('isLogged', 'true')
+        sessionStorage.setItem('token', response.data.token)
         navigate('/home')
       })
       .catch((error) => {
