@@ -4,13 +4,15 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { PartyModel } from '@/api/party'
+import { PartyModel, updateParty } from '@/api/party'
+import { CompanyModel } from '@/api/company'
 
 interface PartyDailogArgs {
   party: PartyModel
 }
 
 const partySchema = z.object({
+  uuid: z.string().uuid('Campo inválido'),
   name: z.string().min(1, 'Campo inválido'),
   partyDate: z.string().min(1, 'Campo inválido'),
   partyTime: z.string().min(1, 'Campo inválido'),
@@ -33,6 +35,7 @@ export const PartyDailog = ({ party }: PartyDailogArgs) => {
   })
 
   useEffect(() => {
+    setValue('uuid', party.uuid!)
     setValue('name', party.name)
     setValue('partyDate', party.partyDate)
     setValue('partyTime', party.partyTime)
@@ -41,7 +44,29 @@ export const PartyDailog = ({ party }: PartyDailogArgs) => {
   }, [])
 
   const handleUpdate = (data: PartyFormData) => {
-    console.log(data)
+    if (!isShow) {
+      const token = sessionStorage.getItem('token')
+      const company: CompanyModel = JSON.parse(sessionStorage.getItem('company')!)
+
+      const party: PartyModel = {
+        uuid: data.uuid,
+        name: data.name,
+        partyDate: data.partyDate,
+        partyTime: data.partyTime,
+        celebrities: data.celebrities,
+        observations: data.observations,
+        uuidCompany: company.uuid!
+      }
+
+      updateParty(token!, party)
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+
     setIsShow(!isShow)
   }
 
@@ -63,6 +88,23 @@ export const PartyDailog = ({ party }: PartyDailogArgs) => {
         </DialogHeader>
 
         <form onSubmit={handleSubmit(handleUpdate)} className='flex flex-col items-center justify-center gap-4'>
+          <fieldset className='w-full flex flex-col gap-1'>
+            <label htmlFor='uuid' className='text-sm font-medium'>UUID</label>
+            <input
+              id='uuid'
+              type='text'
+              {...register('uuid')}
+              className='w-full h-9 flex border rounded-md bg-transparent px-3 py-1 text-sm placeholder:text-muted-foreground disabled:text-muted-foreground'
+              disabled
+            />
+
+            {errors.uuid && (
+              <span className='font-medium text-sm text-red-500'>
+                {errors.uuid.message}
+              </span>
+            )}
+          </fieldset>
+
           <fieldset className='w-full flex flex-col gap-1'>
             <label htmlFor='email' className='text-sm font-medium'>Nome*</label>
             <input
@@ -147,8 +189,15 @@ export const PartyDailog = ({ party }: PartyDailogArgs) => {
           </fieldset>
 
           <div className='w-full flex items-center justify-center gap-4'>
-            <button className='w-full h-9 rounded-md text-sm bg-zinc-950 text-zinc-50'>Editar</button>
-            <button className='w-full h-9 border border-zinc-950 rounded-md text-sm text-zinc-950'>Apagar</button>
+            {isShow ? (
+              <>
+                <button className='w-full h-9 rounded-md text-sm bg-zinc-950 text-zinc-50'>Editar</button>
+                <button className='w-full h-9 border border-zinc-950 rounded-md text-sm text-zinc-950'>Apagar</button>
+              </>
+
+            ) : (
+              <button className='w-full h-9 rounded-md text-sm bg-zinc-950 text-zinc-50'>Salvar</button>
+            )}
           </div>
         </form>
       </DialogContent>
