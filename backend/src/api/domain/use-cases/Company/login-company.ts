@@ -4,7 +4,7 @@ import { sign } from 'jsonwebtoken'
 export class LoginUseCase {
   constructor (private repository: CompanyRepository) { }
 
-  async execute (email: string, secret: string): Promise<string | undefined> {
+  async execute (email: string, secret: string): Promise<object | undefined> {
     const company = await this.repository.findOneByEmail(email)
 
     if (!company) throw new Error('Login inválido')
@@ -19,6 +19,6 @@ export class LoginUseCase {
       }
     )
 
-    return token
+    return { token, company }
   }
 }
