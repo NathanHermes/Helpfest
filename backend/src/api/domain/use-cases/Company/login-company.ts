@@ -19,6 +19,6 @@ export class LoginUseCase {
       }
     )
 
-    return { token, company }
+    return { token: token, company: company }
   }
 }
