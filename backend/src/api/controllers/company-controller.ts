@@ -32,7 +32,7 @@ export class CompanyController {
     return response.status(200).json({
       'code': 200,
       'status': 'OK',
-      'token': _response,
+      'data': _response,
       'expire-time': '4h'
     })
   }
