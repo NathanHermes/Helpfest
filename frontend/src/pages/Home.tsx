@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { validateAuth } from '@/utils/validate-auth'
 import { User } from 'lucide-react'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { PartyModel, getAllParties } from '@/api/party'
+import { PartyModel, getAllParties, updateParty } from '@/api/party'
 import { PartyDailog } from '@/components/party-dailog'
 
 export const Home = () => {
@@ -12,16 +12,33 @@ export const Home = () => {
 
   useEffect(() => {
     validateAuth(navigate, '/login')
+    
+    loadParties()
+  }, [])
+
+  const loadParties = () => {
     const token = sessionStorage.getItem('token')
 
     getAllParties(token!)
-      .then(({ data }) => {
-        setParties(data.data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
+    .then(({ data }) => {
+      setParties(data.data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
+
+  const handleUpdateParty = (token: string, party: PartyModel) => {
+    updateParty(token!, party)
+        .then(() => {
+          alert('Evento atualizado')
+          loadParties()
+        })
+        .catch((error) => {
+          alert(error.response.data.message)
+          loadParties()
+        })
+  }
 
   return (
     <main className='w-full h-screen flex flex-col items-center gap-10'>
@@ -52,7 +69,7 @@ export const Home = () => {
 
       <section className='w-3/4 h-full grid grid-cols-5 gap-4'>
         {parties.map((party) =>
-          <PartyDailog key={party.uuid} party={party} />
+          <PartyDailog key={party.uuid} party={party} update={handleUpdateParty} />
         )}
       </section>
     </main >
