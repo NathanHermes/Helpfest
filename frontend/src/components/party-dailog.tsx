@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { PartyModel, updateParty } from '@/api/party'
+import { PartyModel } from '@/api/party'
 import { CompanyModel } from '@/api/company'
 
 interface PartyDailogArgs {
-  party: PartyModel
+  party: PartyModel,
+  update: (token: string, party: PartyModel) => void
 }
 
 const partySchema = z.object({
@@ -22,7 +23,7 @@ const partySchema = z.object({
 
 type PartyFormData = z.infer<typeof partySchema>
 
-export const PartyDailog = ({ party }: PartyDailogArgs) => {
+export const PartyDailog = ({ party, update }: PartyDailogArgs) => {
   const [isShow, setIsShow] = useState(true)
 
   const {
@@ -58,13 +59,7 @@ export const PartyDailog = ({ party }: PartyDailogArgs) => {
         uuidCompany: company.uuid!
       }
 
-      updateParty(token!, party)
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      update(token!, party)
     }
 
     setIsShow(!isShow)
