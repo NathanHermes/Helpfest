@@ -1,10 +1,10 @@
-import { useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { validateAuth } from '@/utils/validate-auth'
-import { User } from 'lucide-react'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { PartyModel, getAllParties, updateParty } from '@/api/party'
 import { PartyDailog } from '@/components/party-dailog'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { validateAuth } from '@/utils/validate-auth'
+import { User } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const Home = () => {
   const navigate = useNavigate()
@@ -12,7 +12,7 @@ export const Home = () => {
 
   useEffect(() => {
     validateAuth(navigate, '/login')
-    
+
     loadParties()
   }, [])
 
@@ -20,24 +20,24 @@ export const Home = () => {
     const token = sessionStorage.getItem('token')
 
     getAllParties(token!)
-    .then(({ data }) => {
-      setParties(data.data)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+      .then(({ data }) => {
+        setParties(data.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   const handleUpdateParty = (token: string, party: PartyModel) => {
     updateParty(token!, party)
-        .then(() => {
-          alert('Evento atualizado')
-          loadParties()
-        })
-        .catch((error) => {
-          alert(error.response.data.message)
-          loadParties()
-        })
+      .then(() => {
+        alert('Evento atualizado')
+        loadParties()
+      })
+      .catch((error) => {
+        alert(error.response.data.message)
+        loadParties()
+      })
   }
 
   return (
