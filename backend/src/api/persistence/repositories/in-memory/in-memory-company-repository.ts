@@ -5,39 +5,39 @@ import { CompanyDao } from '../../dao/company-dao'
 export class InMemoryCompanyRepository implements CompanyRepository {
   private dao: CompanyDao
 
-  constructor () {
+  constructor() {
     this.dao = new CompanyDao()
   }
 
-  findAll (): Array<Company> {
+  findAll(): Array<Company> {
     return this.dao.findAll()
   }
 
-  async findOne (uuid: string): Promise<Company | undefined> {
+  async findOne(uuid: string): Promise<Company | undefined> {
     const company = await this.dao.findOne(uuid)
 
     return company
   }
 
-  async findOneByEmail (email: string): Promise<Company | undefined> {
+  async findOneByEmail(email: string): Promise<Company | undefined> {
     const company = await this.dao.SelectByEmail(email)
 
     return company
   }
 
-  async create (company: Company): Promise<string> {
+  async create(company: Company): Promise<string> {
     const uuid = await this.dao.create(company)
 
     return uuid
   }
 
-  async update (uuid: string, company: Company): Promise<string> {
+  async update(uuid: string, company: Company): Promise<string> {
     const _uuid = await this.dao.update(uuid, company)
 
     return _uuid
   }
 
-  async delete (company: Company): Promise<Company> {
+  async delete(company: Company): Promise<Company> {
     const result = await this.dao.delete(company)
 
     return result
