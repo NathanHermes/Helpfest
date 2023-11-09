@@ -1,11 +1,11 @@
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from './ui/dialog'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog'
 
-import { PartyModel } from '@/api/party'
 import { CompanyModel } from '@/api/company'
+import { PartyModel } from '@/api/party'
 
 interface PartyDailogArgs {
   party: PartyModel,
