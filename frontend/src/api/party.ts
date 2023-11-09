@@ -18,6 +18,16 @@ export const getAllParties = async (token: string) => {
   })
 }
 
+export const createParty = async (token: string, party: PartyModel) => {
+  return await api.post('/party/create', {
+    ...party
+  }, {
+    headers: {
+      Authorization: token
+    }
+  })
+}
+
 export const updateParty = async (token: string, party: PartyModel) => {
   return await api.put('/party/update', {
     ...party
