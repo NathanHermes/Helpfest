@@ -9,7 +9,8 @@ import { PartyModel } from '@/api/party'
 
 interface PartyDailogArgs {
   party: PartyModel,
-  update: (token: string, party: PartyModel) => void
+  update: (token: string, party: PartyModel) => void,
+  deleteAction: (token: string, uuid: string) => void
 }
 
 const partySchema = z.object({
@@ -23,8 +24,10 @@ const partySchema = z.object({
 
 type PartyFormData = z.infer<typeof partySchema>
 
-export const PartyDailog = ({ party, update }: PartyDailogArgs) => {
+export const PartyDailog = ({ party, update, deleteAction }: PartyDailogArgs) => {
+  const [isOpen, setOpen] = useState(false)
   const [isShow, setIsShow] = useState(true)
+  const [uuid, setUUID] = useState('')
 
   const {
     formState: { errors },
@@ -36,6 +39,7 @@ export const PartyDailog = ({ party, update }: PartyDailogArgs) => {
   })
 
   useEffect(() => {
+    setUUID(party.uuid!)
     setValue('uuid', party.uuid!)
     setValue('name', party.name)
     setValue('partyDate', party.partyDate)
@@ -65,8 +69,14 @@ export const PartyDailog = ({ party, update }: PartyDailogArgs) => {
     setIsShow(!isShow)
   }
 
+  const handleDelete = () => {
+    const token = sessionStorage.getItem('token')
+    deleteAction(token!, uuid)
+    setOpen(!isOpen)
+  }
+
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={() => setOpen(!isOpen)}>
       <DialogTrigger className='max-w-[240px] max-h-[240px] flex flex-col items-center justify-center rounded-md text-zinc-50 bg-zinc-950'>
         <h2 className='text-2xl font-medium'>{party.name}</h2>
 
@@ -121,7 +131,7 @@ export const PartyDailog = ({ party, update }: PartyDailogArgs) => {
             <label htmlFor='partyDate' className='text-sm font-medium'>Data*</label>
             <input
               id='partyDate'
-              type='text'
+              type='date'
               {...register('partyDate')}
               className='w-full h-9 flex border rounded-md bg-transparent px-3 py-1 text-sm placeholder:text-muted-foreground disabled:text-muted-foreground'
               disabled={isShow}
@@ -138,7 +148,7 @@ export const PartyDailog = ({ party, update }: PartyDailogArgs) => {
             <label htmlFor='partyTime' className='text-sm font-medium'>Horário*</label>
             <input
               id='partyTime'
-              type='text'
+              type='time'
               {...register('partyTime')}
               className='w-full h-9 flex border rounded-md bg-transparent px-3 py-1 text-sm placeholder:text-muted-foreground disabled:text-muted-foreground'
               disabled={isShow}
@@ -187,11 +197,11 @@ export const PartyDailog = ({ party, update }: PartyDailogArgs) => {
             {isShow ? (
               <>
                 <button className='w-full h-9 rounded-md text-sm bg-zinc-950 text-zinc-50'>Editar</button>
-                <button className='w-full h-9 border border-zinc-950 rounded-md text-sm text-zinc-950'>Apagar</button>
+                <button type='button' className='w-full h-9 border border-zinc-950 rounded-md text-sm text-zinc-950' onClick={handleDelete}>Apagar</button>
               </>
 
             ) : (
-              <button className='w-full h-9 rounded-md text-sm bg-zinc-950 text-zinc-50'>Salvar</button>
+              <button type='submit' className='w-full h-9 rounded-md text-sm bg-zinc-950 text-zinc-50'>Salvar</button>
             )}
           </div>
         </form>
