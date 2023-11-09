@@ -1,4 +1,4 @@
-import { PartyModel, createParty, getAllParties, updateParty } from '@/api/party'
+import { PartyModel, createParty, deleteParty, getAllParties, updateParty } from '@/api/party'
 import { CreatePartyDailog } from '@/components/create-party-dailog'
 import { PartyDailog } from '@/components/party-dailog'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
@@ -13,7 +13,6 @@ export const Home = () => {
 
   useEffect(() => {
     validateAuth(navigate, '/login')
-
     loadParties()
   }, [])
 
@@ -29,6 +28,18 @@ export const Home = () => {
       })
   }
 
+  const handleCreateParty = (token: string, party: PartyModel) => {
+    createParty(token, party)
+      .then(() => {
+        alert('Evento cadastrado')
+        loadParties()
+      })
+      .catch((error) => {
+        alert(error.response.data.message)
+        loadParties()
+      })
+  }
+
   const handleUpdateParty = (token: string, party: PartyModel) => {
     updateParty(token!, party)
       .then(() => {
@@ -41,17 +52,18 @@ export const Home = () => {
       })
   }
 
-  const handleCreateParty = (token: string, party: PartyModel) => {
-    createParty(token, party)
+  const handleDeleteParty = (token: string, uuid: string) => {
+    deleteParty(token, uuid)
       .then(() => {
-        alert('Evento cadastrado')
         loadParties()
+        alert('Evento deletado')
       })
       .catch((error) => {
         alert(error.response.data.message)
         loadParties()
       })
   }
+
   return (
     <main className='w-full h-screen flex flex-col items-center gap-10'>
       <nav className='w-3/4 min-h-[8vh] flex items-center justify-between mt-4 p-4 rounded-md bg-zinc-950'>
@@ -80,10 +92,9 @@ export const Home = () => {
         <p className='text-zinc-500'>Volte novamente mais tarde.</p>
       </div>
 
-
       <section className='w-3/4 h-full grid grid-cols-5 gap-4'>
         {parties.map((party) =>
-          <PartyDailog key={party.uuid} party={party} update={handleUpdateParty} />
+          <PartyDailog key={party.uuid} party={party} update={handleUpdateParty} deleteAction={handleDeleteParty} />
         )}
       </section>
     </main >
