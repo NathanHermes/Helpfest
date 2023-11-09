@@ -2,6 +2,7 @@ import { PartyModel, createParty, deleteParty, getAllParties, updateParty } from
 import { CreatePartyDailog } from '@/components/create-party-dailog'
 import { PartyDailog } from '@/components/party-dailog'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { UserForm } from '@/components/user-form'
 import { validateAuth } from '@/utils/validate-auth'
 import { User } from 'lucide-react'
 import { useEffect, useState } from 'react'
@@ -78,11 +79,10 @@ export const Home = () => {
             <PopoverTrigger className='p-2 rounded-full bg-zinc-900 duration-500 hover:bg-zinc-800'>
               <User className='text-zinc-50' />
             </PopoverTrigger>
-            <PopoverContent>
-              Testando o Popover
+            <PopoverContent className='max-w-sm w-full flex items-center justify-center'>
+              <UserForm />
             </PopoverContent>
           </Popover>
-
         </div>
       </nav>
 
