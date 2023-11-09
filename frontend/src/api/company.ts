@@ -30,3 +30,13 @@ export const saveCompany = async (company: CompanyModel) => {
     ...company
   })
 }
+
+export const updateCompany = async (token: string, company: CompanyModel) => {
+  return await api.put('/company/update', {
+    ...company
+  }, {
+    headers: {
+      Authorization: token
+    }
+  })
+}
