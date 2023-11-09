@@ -84,7 +84,7 @@ export const CreatePartyDailog = ({ action }: PartyDailogArgs) => {
             <label htmlFor='partyDate' className='text-sm font-medium'>Data*</label>
             <input
               id='partyDate'
-              type='text'
+              type='date'
               {...register('partyDate')}
               className='w-full h-9 flex border rounded-md bg-transparent px-3 py-1 text-sm placeholder:text-muted-foreground disabled:text-muted-foreground'
             />
@@ -100,7 +100,7 @@ export const CreatePartyDailog = ({ action }: PartyDailogArgs) => {
             <label htmlFor='partyTime' className='text-sm font-medium'>Horário*</label>
             <input
               id='partyTime'
-              type='text'
+              type='time'
               {...register('partyTime')}
               className='w-full h-9 flex border rounded-md bg-transparent px-3 py-1 text-sm placeholder:text-muted-foreground disabled:text-muted-foreground'
             />
