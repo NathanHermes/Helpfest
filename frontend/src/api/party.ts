@@ -37,3 +37,14 @@ export const updateParty = async (token: string, party: PartyModel) => {
     }
   })
 }
+
+export const deleteParty = async (token: string, uuid: string) => {
+  return await api.delete('/party/delete', {
+    data: {
+      uuid
+    },
+    headers: {
+      Authorization: token
+    }
+  })
+}
