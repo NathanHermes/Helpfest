@@ -4,6 +4,7 @@ import { z } from 'zod'
 
 import { CompanyModel, updateCompany } from '@/api/company'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const registerSchema = z.object({
   uuid: z.string().uuid('Campo inválido'),
@@ -29,7 +30,7 @@ type RegisterFormData = z.infer<typeof registerSchema>
 export const UserForm = () => {
   const [isShow, setIsShow] = useState(true)
   const [company, setCompany] = useState<CompanyModel>()
-
+  const navigate = useNavigate()
   const {
     formState: { errors },
     handleSubmit,
@@ -84,6 +85,11 @@ export const UserForm = () => {
     }
 
     setIsShow(!isShow)
+  }
+
+  const logout = () => {
+    sessionStorage.clear()
+    navigate('/')
   }
 
   return (
@@ -270,7 +276,7 @@ export const UserForm = () => {
           {isShow ? (
             <>
               <button className='w-full h-9 rounded-md text-sm bg-zinc-950 text-zinc-50'>Editar</button>
-              <button type='button' className='w-full h-9 border border-zinc-950 rounded-md text-sm text-zinc-950'>Sair</button>
+              <button type='button' className='w-full h-9 border border-zinc-950 rounded-md text-sm text-zinc-950' onClick={logout}>Sair</button>
             </>
 
           ) : (
