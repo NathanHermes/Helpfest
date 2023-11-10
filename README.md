@@ -28,5 +28,11 @@ Para utilizar o sistema basta clonar o repositório na sua máquina local, e rod
 > 3. Rode o frontend: `pnpm run dev`
 > 4. Acesse o frontend no navegador: [http://localhost:3001](http://localhost:3001)
 
+## Contribuidores 😊
+
+<a href="https://github.com/NathanHermes/Helpfest/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=NathanHermes/Helpfest" />
+</a>
+
 ## 📝 Licença
 Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para obter mais detalhes.
