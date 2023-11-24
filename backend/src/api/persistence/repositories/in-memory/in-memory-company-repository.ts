@@ -1,5 +1,5 @@
 import { Company } from '../../../domain/entities/company'
-import { CompanyRepository } from '../../../domain/use-cases/Company/company-repository'
+import { CompanyRepository } from '../../../domain/use-cases/company/company-repository'
 import { CompanyDao } from '../../dao/company-dao'
 
 export class InMemoryCompanyRepository implements CompanyRepository {
@@ -7,6 +7,12 @@ export class InMemoryCompanyRepository implements CompanyRepository {
 
   constructor() {
     this.dao = new CompanyDao()
+  }
+
+  async create(company: Company): Promise<string> {
+    const uuid = await this.dao.create(company)
+
+    return uuid
   }
 
   findAll(): Array<Company> {
@@ -23,12 +29,6 @@ export class InMemoryCompanyRepository implements CompanyRepository {
     const company = await this.dao.SelectByEmail(email)
 
     return company
-  }
-
-  async create(company: Company): Promise<string> {
-    const uuid = await this.dao.create(company)
-
-    return uuid
   }
 
   async update(uuid: string, company: Company): Promise<string> {
