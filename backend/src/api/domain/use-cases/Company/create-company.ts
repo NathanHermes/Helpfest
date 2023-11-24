@@ -8,7 +8,7 @@ export class CreateCompanyUseCase {
     private repository: CompanyRepository
   ) { }
 
-  async execute({ name, email, CNPJ, phone, address, number, city, uf, complement, secret }: CompanyArgs): Promise<string | undefined> {
+  async execute({ name, email, CNPJ, phone, address, number, city, uf, complement, secret }: CompanyArgs): Promise<Company | undefined> {
     if (name === null || name.trim() === '') throw new Error('Invalid company name')
     if (name.length <= 3) throw new Error('Invalid company name length')
 
@@ -30,8 +30,10 @@ export class CreateCompanyUseCase {
       secret
     })
 
-    const uuid = await this.repository.create(company)
+    const company_uuid = await this.repository.create(company)
 
-    return uuid
+    const response = this.repository.findOne(company_uuid)
+
+    return response
   }
 }
