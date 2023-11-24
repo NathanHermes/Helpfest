@@ -1,14 +1,14 @@
 import { describe, expect, it } from 'vitest'
-import { CreateCompany, CreateCompanyRequest } from './create-company'
-import { Company } from '../../entities/company'
-import { InMemoryCompanyRepository } from '../../repositories/in-memory/in-memory-company-repository'
+import { InMemoryCompanyRepository } from '../../../../persistence/repositories/in-memory/in-memory-company-repository'
+import { Company, CompanyArgs } from '../../../entities/company'
+import { CreateCompanyUseCase } from '../create-company'
 
 const companyRepository = new InMemoryCompanyRepository()
-const createCompany = new CreateCompany(companyRepository)
+const createCompany = new CreateCompanyUseCase(companyRepository)
 
 describe('Create company', () => {
   it('should be able to create a company', () => {
-    const company: CreateCompanyRequest = {
+    const company: CompanyArgs = {
       name: 'Oasis Eventos',
       email: 'oasis@gmail.com',
       CNPJ: '56041364000174',
@@ -25,7 +25,7 @@ describe('Create company', () => {
   })
 
   describe('Company name validation', () => {
-    const company: CreateCompanyRequest = {
+    const company: CompanyArgs = {
       name: '', email: '', CNPJ: '', phone: '', address: '', number: '', city: '', uf: '', complement: '', secret: ''
     }
 
