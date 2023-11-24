@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryCompanyRepository } from '../../../../persistence/repositories/in-memory/in-memory-company-repository'
 import { Company, CompanyArgs } from '../../../entities/company'
 import { CreateCompanyUseCase } from '../create-company'
@@ -7,8 +7,10 @@ const companyRepository = new InMemoryCompanyRepository()
 const createCompany = new CreateCompanyUseCase(companyRepository)
 
 describe('Create company', () => {
-  it('should be able to create a company', () => {
-    const company: CompanyArgs = {
+  let company: CompanyArgs = {}
+
+  beforeEach(async () => {
+    company = {
       name: 'Oasis Eventos',
       email: 'oasis@gmail.com',
       CNPJ: '56041364000174',
@@ -20,15 +22,13 @@ describe('Create company', () => {
       complement: '',
       secret: 'test'
     }
+  })
 
+  it('should be able to create a company', () => {
     expect(createCompany.execute(company)).resolves.toBeInstanceOf(Company)
   })
 
   describe('Company name validation', () => {
-    const company: CompanyArgs = {
-      name: '', email: '', CNPJ: '', phone: '', address: '', number: '', city: '', uf: '', complement: '', secret: ''
-    }
-
     it('should not be able to create a company with null name', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-ignore
@@ -53,10 +53,6 @@ describe('Create company', () => {
   })
 
   describe('Company email validation', () => {
-    const company: CreateCompanyRequest = {
-      name: 'Oasis Eventos', email: '', CNPJ: '', phone: '', address: '', number: '', city: '', uf: '', complement: '', secret: ''
-    }
-
     it('should not be able to create a company with null email', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-ignore
@@ -86,10 +82,6 @@ describe('Create company', () => {
   })
 
   describe('Company CNPJ validation', () => {
-    const company: CreateCompanyRequest = {
-      name: 'Oasis Eventos', email: 'oasis.eventos@gmail.com', CNPJ: '', phone: '', address: '', number: '', city: '', uf: '', complement: '', secret: ''
-    }
-
     it('should not be able to create a company with null CNPJ', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-ignore
