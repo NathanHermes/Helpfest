@@ -8,7 +8,9 @@ export class CompanyInputResquestValidator implements Validator<CompanyArgs> {
     
     if (name === null)
       notification.addError('Name is null')
-    if (name === '' || name.trim())
+    if (name === undefined)
+      notification.addError('Name is undefined')
+    if (name === '')
       notification.addError('Name is blank')
     return notification
   }
