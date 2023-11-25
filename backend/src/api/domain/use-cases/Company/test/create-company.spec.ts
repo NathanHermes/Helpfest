@@ -33,17 +33,19 @@ describe('Create company', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-ignore
       company.name = null
-      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company name')
+      expect(createCompany.execute(company)).rejects.toThrowError('Name is null')
     })
+
+    
 
     it('should not be able to create a company with blank name', () => {
       company.name = ''
-      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company name')
+      expect(createCompany.execute(company)).rejects.toThrowError('Name is blank')
     })
 
     it('should not be able to create a company with white space name', () => {
       company.name = '   '
-      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company name')
+      expect(createCompany.execute(company)).rejects.toThrowError('Name is blank')
     })
 
     it('should not be able to create a company with name length of three characters', () => {
