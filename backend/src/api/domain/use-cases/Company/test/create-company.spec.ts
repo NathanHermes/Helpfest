@@ -29,14 +29,17 @@ describe('Create company', () => {
   })
 
   describe('Company name validation', () => {
-    it('should not be able to create a company with null name', () => {
+    it ('should not be able to create a company with null name', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-ignore
       company.name = null
       expect(createCompany.execute(company)).rejects.toThrowError('Name is null')
     })
 
-    
+    it ('shold not be able to create a company with undefined name', () => {
+      company.name = undefined
+      expect(createCompany.execute(company)).rejects.toThrowError('Name is undefined')
+    })
 
     it('should not be able to create a company with blank name', () => {
       company.name = ''
