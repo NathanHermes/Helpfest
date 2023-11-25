@@ -1,6 +1,5 @@
 import { Company, CompanyArgs } from '../../entities/company'
 import { CompanyRepository } from '../../use-cases/Company/company-repository'
-import { Notification } from '../utils/validation/notification'
 import { Validator } from '../utils/validation/validator'
 import { CompanyInputResquestValidator } from './company-input-request-validator'
 
@@ -13,10 +12,10 @@ export class CreateCompanyUseCase {
 
   async execute(_company: CompanyArgs): Promise<Company | undefined> {
     const validator: Validator<CompanyArgs> = new CompanyInputResquestValidator()
-    const notification: Notification = validator.validate(_company)
+    const notification = await validator.validate(_company)
 
-    if (notification.hasErrors())
-      throw new Error(notification.errorMessage())
+    if (notification)
+      throw new Error(notification)
 
     const company = new Company(_company)
 
