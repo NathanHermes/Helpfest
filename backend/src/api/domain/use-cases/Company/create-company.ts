@@ -1,5 +1,8 @@
 import { Company, CompanyArgs } from '../../entities/company'
-import { CompanyRepository } from '../../use-cases/company/company-repository'
+import { CompanyRepository } from '../../use-cases/Company/company-repository'
+import { Notification } from '../utils/validation/notification'
+import { Validator } from '../utils/validation/validator'
+import { CompanyInputResquestValidator } from './company-input-request-validator'
 
 const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
@@ -8,27 +11,14 @@ export class CreateCompanyUseCase {
     private repository: CompanyRepository
   ) { }
 
-  async execute({ name, email, CNPJ, phone, address, number, city, uf, complement, secret }: CompanyArgs): Promise<Company | undefined> {
-    if (name === null || name.trim() === '') throw new Error('Invalid company name')
-    if (name.length <= 3) throw new Error('Invalid company name length')
+  async execute(_company: CompanyArgs): Promise<Company | undefined> {
+    const validator: Validator<CompanyArgs> = new CompanyInputResquestValidator()
+    const notification: Notification = validator.validate(_company)
 
-    if (email === null || email.trim() === '') throw new Error('Invalid company email')
-    if (!emailRegex.test(email)) throw new Error('Invalid company email format')
+    if (notification.hasErrors())
+      throw new Error(notification.errorMessage())
 
-    if (CNPJ === null || CNPJ.trim() === '') throw new Error('Invalid company CNPJ')
-
-    const company = new Company({
-      name,
-      email,
-      CNPJ,
-      phone,
-      address,
-      number,
-      city,
-      uf,
-      complement,
-      secret
-    })
+    const company = new Company(_company)
 
     const company_uuid = await this.repository.create(company)
 
