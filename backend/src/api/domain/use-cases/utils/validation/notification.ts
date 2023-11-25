@@ -1,10 +1,10 @@
 export class Notification {
-  private errors: Array<Error> = new Array<Error>()
+  private errors: Array<string> = new Array<string>()
 
   constructor() {}
 
   public addError(message: string): void {
-    this.errors.push(new Error(message))
+    this.errors.push(message)
   }
 
   public isCorrect(): boolean {
@@ -16,7 +16,6 @@ export class Notification {
   }
 
   public errorMessage(): string {
-    console.log(this.errors.map(_message => _message.message))
-    return 'In progress'
+    return this.errors[0]
   }
 }
