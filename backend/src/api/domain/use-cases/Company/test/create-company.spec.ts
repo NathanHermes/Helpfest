@@ -36,7 +36,7 @@ describe('Create company', () => {
       expect(createCompany.execute(company)).rejects.toThrowError('Name is null')
     })
 
-    it ('shold not be able to create a company with undefined name', () => {
+    it ('should not be able to create a company with undefined name', () => {
       company.name = undefined
       expect(createCompany.execute(company)).rejects.toThrowError('Name is undefined')
     })
@@ -53,7 +53,7 @@ describe('Create company', () => {
 
     it('should not be able to create a company with name length of three characters', () => {
       company.name = 'abc'
-      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company name length')
+      expect(createCompany.execute(company)).rejects.toThrowError('Name length is invalid')
     })
   })
 
