@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import { resolver } from '../utils/resolver'
-import { InMemoryPartyRepository } from '../api/persistence/repositories/in-memory/in-memory-party-repository'
 import { PartyController } from '../api/controllers/party-controller'
 import { VerifyToken } from '../api/middlewares/verify-token'
+import { InMemoryPartyRepository } from '../api/persistence/repositories/in-memory/in-memory-party-repository'
+import { resolver } from './resolver'
 
 const verifyToken = new VerifyToken()
 const repository = new InMemoryPartyRepository()
