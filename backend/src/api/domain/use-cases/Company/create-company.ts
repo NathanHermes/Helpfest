@@ -1,9 +1,7 @@
 import { Company, CompanyArgs } from '../../entities/company'
 import { CompanyRepository } from '../../use-cases/Company/company-repository'
-import { Validator } from '../utils/validation/validator'
+import { Validator } from '../utils/validator'
 import { CompanyInputResquestValidator } from './company-input-request-validator'
-
-const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
 export class CreateCompanyUseCase {
   constructor(
