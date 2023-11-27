@@ -63,7 +63,7 @@ describe('Create company', () => {
 
     it('should not be able to create a company with white space name', () => {
       company.email = '   '
-      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company email')
+      expect(createCompany.execute(company)).rejects.toThrowError('Email is blank')
     })
 
     it('should not be able to create a company with email without character @', () => {
