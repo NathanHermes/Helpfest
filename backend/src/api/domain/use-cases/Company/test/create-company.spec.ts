@@ -62,7 +62,7 @@ describe('Create company', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-ignore
       company.email = null
-      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company email')
+      expect(createCompany.execute(company)).rejects.toThrowError('Email is null')
     })
 
     it('should not be able to create a company with blank email', () => {
