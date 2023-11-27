@@ -2,6 +2,8 @@ import { CompanyArgs } from '../../entities/company'
 import { Validator } from '../utils/validator'
 
 export class CompanyInputResquestValidator implements Validator<CompanyArgs> {
+  private EMAIL_REGEX = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+
   async validate({ name, email, CNPJ, phone, address, number, city, uf, complement, secret }: CompanyArgs): Promise<string | undefined> {
     if (name === undefined) return 'Name is undefined'
     if (name.trim() === '') return 'Name is blank'
@@ -9,5 +11,7 @@ export class CompanyInputResquestValidator implements Validator<CompanyArgs> {
 
     if (email === undefined) return 'Email is undefined'
     if (email.trim() === '') return 'Email is blank'
+    if (!String(email).toLowerCase().match(this.EMAIL_REGEX)) return 'Email format is invalid'
+
   }
 }
