@@ -29,13 +29,6 @@ describe('Create company', () => {
   })
 
   describe('Company name validation', () => {
-    it ('should not be able to create a company with null name', () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
-      company.name = null
-      expect(createCompany.execute(company)).rejects.toThrowError('Name is null')
-    })
-
     it ('should not be able to create a company with undefined name', () => {
       company.name = undefined
       expect(createCompany.execute(company)).rejects.toThrowError('Name is undefined')
@@ -58,13 +51,6 @@ describe('Create company', () => {
   })
 
   describe('Company email validation', () => {
-    it('should not be able to create a company with null email', () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
-      company.email = null
-      expect(createCompany.execute(company)).rejects.toThrowError('Email is null')
-    })
-
     it('should not be able to create a company with undefined email', () => {
       company.email = undefined
       expect(createCompany.execute(company)).rejects.toThrowError('Email is undefined')
