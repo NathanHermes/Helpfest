@@ -1,5 +1,5 @@
 import { CompanyArgs } from '../../entities/company'
-import { Validator } from '../utils/validation/validator'
+import { Validator } from '../utils/validator'
 
 export class CompanyInputResquestValidator implements Validator<CompanyArgs> {
   async validate({ name, email, CNPJ, phone, address, number, city, uf, complement, secret }: CompanyArgs): Promise<string | undefined> {
