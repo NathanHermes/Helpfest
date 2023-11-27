@@ -9,5 +9,6 @@ export class CompanyInputResquestValidator implements Validator<CompanyArgs> {
     if (name.length <= 3) return 'Name length is invalid'
 
     if (email === null) return 'Email is null'
+    if (email === undefined) return 'Email is undefined'
   }
 }
