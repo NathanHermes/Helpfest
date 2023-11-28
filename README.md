@@ -8,6 +8,10 @@ O Helpfest se esforça para fornecer mais eficiência, controle de vários event
 
 ## 📋 Funcionalidades
 O HELPFEST está em constante desenvolvimento, e as próximas atualizações serão focadas nas seguintes funcionalidades:
+
+- ### Backend
+  - [ ] Teste do caso de uso de criação de uma empresa
+
 - [x] Login e Logout
 - [x] Registrar um nova empresa
 - [x] Editar os dados da empresa
