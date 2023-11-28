@@ -83,6 +83,11 @@ describe('Create company', () => {
         company.CNPJ = undefined
         expect(createCompany.execute(company)).rejects.toThrowError('CNPJ is undefined')
       })
+
+      it('blank cnpj', () => {
+        company.CNPJ = ''
+        expect(createCompany.execute(company)).rejects.toThrowError('CNPJ is blank')
+      })
     })
   })
 })
