@@ -77,5 +77,12 @@ describe('Create company', () => {
         expect(createCompany.execute(company)).rejects.toThrowError('Email format is invalid')
       })
     })
+
+    describe('cnpj validation', () => {
+      it('undefined cnpj', () => {
+        company.CNPJ = undefined
+        expect(createCompany.execute(company)).rejects.toThrowError('CNPJ is undefined')
+      })
+    })
   })
 })
