@@ -14,5 +14,6 @@ export class CompanyInputResquestValidator implements Validator<CompanyArgs> {
     if (!String(email).toLowerCase().match(this.EMAIL_REGEX)) return 'Email format is invalid'
 
     if (CNPJ === undefined) return 'CNPJ is undefined'
+    if (CNPJ.trim() === '') return 'CNPJ is blank'
   }
 }
