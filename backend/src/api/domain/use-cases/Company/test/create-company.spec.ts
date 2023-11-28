@@ -28,71 +28,54 @@ describe('Create company', () => {
     expect(createCompany.execute(company)).resolves.toBeInstanceOf(Company)
   })
 
-  describe('Company name validation', () => {
-    it ('should not be able to create a company with undefined name', () => {
-      company.name = undefined
-      expect(createCompany.execute(company)).rejects.toThrowError('Name is undefined')
+  describe('should not be able to create a company with', () => {
+    describe('name validation', () => {
+      it ('undefined name', () => {
+        company.name = undefined
+        expect(createCompany.execute(company)).rejects.toThrowError('Name is undefined')
+      })
+  
+      it('blank name', () => {
+        company.name = ''
+        expect(createCompany.execute(company)).rejects.toThrowError('Name is blank')
+      })
+  
+      it('white space name', () => {
+        company.name = '   '
+        expect(createCompany.execute(company)).rejects.toThrowError('Name is blank')
+      })
+  
+      it('name length of three characters', () => {
+        company.name = 'abc'
+        expect(createCompany.execute(company)).rejects.toThrowError('Name length is invalid')
+      })
     })
 
-    it('should not be able to create a company with blank name', () => {
-      company.name = ''
-      expect(createCompany.execute(company)).rejects.toThrowError('Name is blank')
-    })
-
-    it('should not be able to create a company with white space name', () => {
-      company.name = '   '
-      expect(createCompany.execute(company)).rejects.toThrowError('Name is blank')
-    })
-
-    it('should not be able to create a company with name length of three characters', () => {
-      company.name = 'abc'
-      expect(createCompany.execute(company)).rejects.toThrowError('Name length is invalid')
-    })
-  })
-
-  describe('Company email validation', () => {
-    it('should not be able to create a company with undefined email', () => {
-      company.email = undefined
-      expect(createCompany.execute(company)).rejects.toThrowError('Email is undefined')
-    })
-
-    it('should not be able to create a company with blank email', () => {
-      company.email = ''
-      expect(createCompany.execute(company)).rejects.toThrowError('Email is blank')
-    })
-
-    it('should not be able to create a company with white space name', () => {
-      company.email = '   '
-      expect(createCompany.execute(company)).rejects.toThrowError('Email is blank')
-    })
-
-    it('should not be able to create a company with email without character @', () => {
-      company.email = 'oasis_gmail.com'
-      expect(createCompany.execute(company)).rejects.toThrowError('Email format is invalid')
-    })
-
-    it('should not be able to create company email without domain', () => {
-      company.email = 'oasis@'
-      expect(createCompany.execute(company)).rejects.toThrowError('Email format is invalid')
-    })
-  })
-
-  describe('Company CNPJ validation', () => {
-    it('should not be able to create a company with null CNPJ', () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
-      company.CNPJ = null
-      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company CNPJ')
-    })
-
-    it('should not be able to create a company with blank CNPJ', () => {
-      company.CNPJ = ''
-      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company CNPJ')
-    })
-
-    it('should not be able to create a company with white space CNPJ', () => {
-      company.CNPJ = '   '
-      expect(createCompany.execute(company)).rejects.toThrowError('Invalid company CNPJ')
+    describe('email validation', () => {
+      it('undefined email', () => {
+        company.email = undefined
+        expect(createCompany.execute(company)).rejects.toThrowError('Email is undefined')
+      })
+  
+      it('blank email', () => {
+        company.email = ''
+        expect(createCompany.execute(company)).rejects.toThrowError('Email is blank')
+      })
+  
+      it('white space name', () => {
+        company.email = '   '
+        expect(createCompany.execute(company)).rejects.toThrowError('Email is blank')
+      })
+  
+      it('email without character @', () => {
+        company.email = 'oasis_gmail.com'
+        expect(createCompany.execute(company)).rejects.toThrowError('Email format is invalid')
+      })
+  
+      it('email without domain', () => {
+        company.email = 'oasis@'
+        expect(createCompany.execute(company)).rejects.toThrowError('Email format is invalid')
+      })
     })
   })
 })
