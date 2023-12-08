@@ -25,7 +25,7 @@ export class Company {
   private complement?: string
   private secret: string
 
-  constructor (args?: CompanyArgs) {
+  constructor(args?: CompanyArgs) {
     this.uuid = args?.uuid
     this.name = args?.name || ''
     this.email = args?.email || ''
@@ -39,59 +39,59 @@ export class Company {
     this.secret = args?.secret || ''
   }
 
-  get _uuid (): string | undefined {
+  get _uuid(): string | undefined {
     return this.uuid
   }
 
-  set _uuid (uuid: string) {
+  set _uuid(uuid: string) {
     this.uuid = uuid
   }
 
-  get _name () {
+  get _name() {
     return this.name
   }
 
-  set _name (name: string) {
+  set _name(name: string) {
     this.name = name
   }
 
-  get _email () {
+  get _email() {
     return this.email
   }
 
-  set _email (email: string) {
+  set _email(email: string) {
     this.email = email
   }
 
-  get _CNPJ () {
+  get _CNPJ() {
     return this.CNPJ
   }
 
-  get _phone () {
+  get _phone() {
     return this.phone
   }
 
-  get _address () {
+  get _address() {
     return this.address
   }
 
-  get _number () {
+  get _number() {
     return this.number
   }
 
-  get _city () {
+  get _city() {
     return this.city
   }
 
-  get _uf () {
+  get _uf() {
     return this.uf
   }
 
-  get _complement () {
+  get _complement() {
     return this.complement
   }
 
-  get _secret () {
+  get _secret() {
     return this.secret
   }
 }
