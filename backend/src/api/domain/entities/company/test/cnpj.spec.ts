@@ -9,4 +9,10 @@ describe('cnpj class test cases', () => {
       expect(_cnpj.format()).toBe('26.149.878/0001-87')
     })
   })
+
+  it('should return false to an empty cnpj', () => {
+    const _cnpj = new cnpj('')
+
+    expect(_cnpj.isValid()).toBeFalsy()
+  })
 })
