@@ -6,7 +6,7 @@ import { DeleteCompanyUseCase } from '../domain/use-cases/Company/delete-company
 import { FindCompanyUseCase } from '../domain/use-cases/Company/find-company'
 import { LoginUseCase } from '../domain/use-cases/Company/login-company'
 import { UpdateCompanyUseCase } from '../domain/use-cases/Company/update-company'
-import { HandlerFunction } from '../resolver'
+import { HandlerFunction } from '../../routes/resolver'
 
 export class CompanyController {
   private loginUseCase: LoginUseCase
