@@ -1,4 +1,5 @@
-import { CompanyArgs } from '../../entities/company'
+
+import { CompanyArgs } from '../../entities/company/company'
 import { Validator } from '../utils/validator'
 
 export class CompanyInputResquestValidator implements Validator<CompanyArgs> {

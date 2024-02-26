@@ -1,4 +1,5 @@
-import { Company, CompanyArgs } from '../../entities/company'
+
+import { Company, CompanyArgs } from '../../entities/company/company'
 import { CompanyRepository } from '../../use-cases/Company/company-repository'
 import { Validator } from '../utils/validator'
 import { CompanyInputResquestValidator } from './company-input-request-validator'

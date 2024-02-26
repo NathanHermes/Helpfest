@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
-import { HandlerFunction } from '../../utils/resolver'
 import { JwtPayload, verify } from 'jsonwebtoken'
+import { HandlerFunction } from '../../routes/resolver'
 
 export class VerifyToken {
   execute: HandlerFunction = async (request: Request, response: Response, next?: NextFunction): Promise<undefined> => {

@@ -17,7 +17,7 @@ export class Party {
   private observations?: string
   private uuidCompany: string
 
-  constructor (args?: PartyArgs) {
+  constructor(args?: PartyArgs) {
     this.uuid = args?.uuid
     this.name = args?.name || ''
     this.partyDate = args?.partyDate || ''
@@ -27,18 +27,18 @@ export class Party {
     this.uuidCompany = args?.uuidCompany || ''
   }
 
-  get _uuid (): string | undefined { return this.uuid }
-  set _uuid (uuid: string) { this.uuid = uuid }
+  get _uuid(): string | undefined { return this.uuid }
+  set _uuid(uuid: string) { this.uuid = uuid }
 
-  get _name () { return this.name }
+  get _name() { return this.name }
 
-  get _eventDate () { return this.partyDate }
+  get _eventDate() { return this.partyDate }
 
-  get _partyTime () { return this.partyTime }
+  get _partyTime() { return this.partyTime }
 
-  get _celebrities () { return this.celebrities }
+  get _celebrities() { return this.celebrities }
 
-  get _observations () { return this.observations }
+  get _observations() { return this.observations }
 
-  get _uuidCompany () { return this.uuidCompany }
+  get _uuidCompany() { return this.uuidCompany }
 }

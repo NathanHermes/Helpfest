@@ -1,0 +1,17 @@
+{
+  "companies": [
+    {
+      "uuid": "bee3d98b-c6f8-4046-8670-5322572ca340",
+      "name": "Oasis Eventos",
+      "email": "oasis@gmail.com",
+      "CNPJ": "56041364000174",
+      "phone": "1136861256",
+      "address": "Rod. Washington Luís",
+      "number": "",
+      "city": "São Carlos",
+      "uf": "SP",
+      "complement": "",
+      "secret": "test"
+    }
+  ]
+}

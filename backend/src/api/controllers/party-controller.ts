@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
 
-import { HandlerFunction } from '../../utils/resolver'
 import { PartyRepository } from '../domain/use-cases/Party/party-repository'
 
+import { HandlerFunction } from '../../routes/resolver'
 import { CreatePartyUseCase } from '../domain/use-cases/Party/create-party'
 import { DeletePartyUseCase } from '../domain/use-cases/Party/delete-party'
 import { FindPartyUseCase } from '../domain/use-cases/Party/find-party'
@@ -14,7 +14,7 @@ export class PartyController {
   private updatePartyUseCase: UpdatePartyUseCase
   private deletePartyUseCase: DeletePartyUseCase
 
-  constructor (private repository: PartyRepository) {
+  constructor(private repository: PartyRepository) {
     this.findPartyUseCase = new FindPartyUseCase(this.repository)
     this.createPartyUseCase = new CreatePartyUseCase(this.repository)
     this.updatePartyUseCase = new UpdatePartyUseCase(this.repository)

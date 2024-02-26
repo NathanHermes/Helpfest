@@ -1,10 +1,10 @@
-import { CompanyRepository } from './company-repository'
 import { sign } from 'jsonwebtoken'
+import { CompanyRepository } from './company-repository'
 
 export class LoginUseCase {
-  constructor (private repository: CompanyRepository) { }
+  constructor(private repository: CompanyRepository) { }
 
-  async execute (email: string, secret: string): Promise<object | undefined> {
+  async execute(email: string, secret: string): Promise<object | undefined> {
     const company = await this.repository.findOneByEmail(email)
 
     if (!company) throw new Error('Login inválido')

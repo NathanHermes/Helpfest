@@ -1,4 +1,4 @@
-import { Company, CompanyArgs } from '../../entities/company'
+import { Company, CompanyArgs } from '../../entities/company/company'
 import { CompanyRepository } from './company-repository'
 
 export class UpdateCompanyUseCase {

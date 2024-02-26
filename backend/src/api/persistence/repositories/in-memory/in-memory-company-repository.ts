@@ -1,5 +1,5 @@
-import { Company } from '../../../domain/entities/company'
-import { CompanyRepository } from '../../../domain/use-cases/company/company-repository'
+import { Company } from '../../../domain/entities/company/company'
+import { CompanyRepository } from '../../../domain/use-cases/Company/company-repository'
 import { CompanyDao } from '../../dao/company-dao'
 
 export class InMemoryCompanyRepository implements CompanyRepository {

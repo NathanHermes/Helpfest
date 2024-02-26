@@ -1,4 +1,5 @@
-import { Company } from '../../entities/company'
+import { Company } from '../../entities/company/company'
+
 
 export interface CompanyRepository {
   findAll(): Array<Company>
