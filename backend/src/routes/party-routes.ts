@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { PartyController } from '../api/controllers/party-controller'
+import { PartyController } from '../controllers/party-controller'
 import { VerifyToken } from '../api/middlewares/verify-token'
 import { InMemoryPartyRepository } from '../api/persistence/repositories/in-memory/in-memory-party-repository'
 import { resolver } from './resolver'
