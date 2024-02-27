@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import { CompanyController } from '../controllers/company-controller'
-import { VerifyToken } from '../api/middlewares/verify-token'
-import { InMemoryCompanyRepository } from '../api/persistence/repositories/in-memory/in-memory-company-repository'
+import { CompanyController } from '../controllers/company.controller'
+import { VerifyToken } from '../middlewares/verify-token'
+import { InMemoryCompanyRepository } from '../repositories/in-memory-company-repository'
 import { resolver } from './resolver'
 
 const verifyToken = new VerifyToken()
