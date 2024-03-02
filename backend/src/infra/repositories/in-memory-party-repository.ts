@@ -1,5 +1,5 @@
-import { Party } from '../models/party'
-import { PartyRepository } from '../service/Party/party-repository'
+import { Party } from '../../domain/models/party'
+import { PartyRepository } from '../../domain/use-cases/Party/party-repository'
 import { PartyDao } from '../modules/party-dao'
 
 export class InMemoryPartyRepository implements PartyRepository {

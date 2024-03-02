@@ -1,6 +1,6 @@
-import { Party } from '../models/party'
-import { DAO } from './DAO'
 import { randomUUID } from 'crypto'
+import { Party } from '../../domain/models/party'
+import { DAO } from './DAO'
 
 export class PartyDao implements DAO<Party, string> {
   private parties: Array<Party> = new Array<Party>

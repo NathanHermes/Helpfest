@@ -1,7 +1,7 @@
 import { Router } from 'express'
+import { InMemoryPartyRepository } from '../../infra/repositories/in-memory-party-repository'
 import { PartyController } from '../controllers/party.controller'
 import { VerifyToken } from '../middlewares/verify-token'
-import { InMemoryPartyRepository } from '../repositories/in-memory-party-repository'
 import { resolver } from './resolver'
 
 const verifyToken = new VerifyToken()

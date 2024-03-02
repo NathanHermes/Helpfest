@@ -1,12 +1,12 @@
 import { Request, Response } from 'express'
 
-import { PartyRepository } from '../service/Party/party-repository'
+import { PartyRepository } from '../../domain/use-cases/Party/party-repository'
 
+import { CreatePartyUseCase } from '../../domain/use-cases/Party/create-party'
+import { DeletePartyUseCase } from '../../domain/use-cases/Party/delete-party'
+import { FindPartyUseCase } from '../../domain/use-cases/Party/find-party'
+import { UpdatePartyUseCase } from '../../domain/use-cases/Party/update-party'
 import { HandlerFunction } from '../routes/resolver'
-import { CreatePartyUseCase } from '../service/Party/create-party'
-import { DeletePartyUseCase } from '../service/Party/delete-party'
-import { FindPartyUseCase } from '../service/Party/find-party'
-import { UpdatePartyUseCase } from '../service/Party/update-party'
 
 export class PartyController {
   private findPartyUseCase: FindPartyUseCase

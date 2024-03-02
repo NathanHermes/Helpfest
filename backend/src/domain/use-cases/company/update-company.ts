@@ -1,4 +1,4 @@
-import { Company, CompanyArgs } from '../../models/company'
+import { Company, CompanyArgs } from '../../domain/models/company'
 import { CompanyRepository } from './company-repository'
 
 export class UpdateCompanyUseCase {

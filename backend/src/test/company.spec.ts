@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { Company } from '../models/company'
+import { Company } from '../domain/models/company'
 
 test('should be able to create a object instance of company', () => {
   const company = new Company({

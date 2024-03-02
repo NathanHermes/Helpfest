@@ -1,4 +1,4 @@
-import { Company } from '../../models/company'
+import { Company } from '../../domain/models/company'
 
 
 export interface CompanyRepository {

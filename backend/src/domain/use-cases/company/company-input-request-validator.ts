@@ -1,11 +1,11 @@
 
-import { CompanyArgs } from '../../models/company'
+import { ICompany } from '../../domain/models/company'
 import { Validator } from '../../modules/validator'
 
-export class CompanyInputResquestValidator implements Validator<CompanyArgs> {
+export class CompanyInputResquestValidator implements Validator<ICompany> {
   private EMAIL_REGEX = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
-  async validate({ name, email, CNPJ, phone, address, number, city, uf, complement, secret }: CompanyArgs): Promise<string | undefined> {
+  async validate({ name, email, cnpj, phone, address, number, city, uf, complement, secret }: ICompany): Promise<string | undefined> {
     if (name === undefined) return 'Name is undefined'
     if (name.trim() === '') return 'Name is blank'
     if (name.length <= 3) return 'Name length is invalid'
@@ -14,7 +14,7 @@ export class CompanyInputResquestValidator implements Validator<CompanyArgs> {
     if (email.trim() === '') return 'Email is blank'
     if (!String(email).toLowerCase().match(this.EMAIL_REGEX)) return 'Email format is invalid'
 
-    if (CNPJ === undefined) return 'CNPJ is undefined'
-    if (CNPJ.trim() === '') return 'CNPJ is blank'
+    if (cnpj === undefined) return 'CNPJ is undefined'
+    if (cnpj.trim() === '') return 'CNPJ is blank'
   }
 }

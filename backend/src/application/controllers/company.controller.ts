@@ -1,12 +1,12 @@
 import { Request, Response } from 'express'
 
+import { CompanyRepository } from '../../domain/use-cases/company/company-repository'
+import { CreateCompanyUseCase } from '../../domain/use-cases/company/create-company'
+import { DeleteCompanyUseCase } from '../../domain/use-cases/company/delete-company'
+import { FindCompanyUseCase } from '../../domain/use-cases/company/find-company'
+import { LoginUseCase } from '../../domain/use-cases/company/login-company'
+import { UpdateCompanyUseCase } from '../../domain/use-cases/company/update-company'
 import { HandlerFunction } from '../routes/resolver'
-import { CompanyRepository } from '../service/Company/company-repository'
-import { CreateCompanyUseCase } from '../service/Company/create-company'
-import { DeleteCompanyUseCase } from '../service/Company/delete-company'
-import { FindCompanyUseCase } from '../service/Company/find-company'
-import { LoginUseCase } from '../service/Company/login-company'
-import { UpdateCompanyUseCase } from '../service/Company/update-company'
 
 export class CompanyController {
   private loginUseCase: LoginUseCase

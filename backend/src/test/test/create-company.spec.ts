@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { InMemoryCompanyRepository } from '../../repositories/in-memory-company-repository'
-import { Company, CompanyArgs } from '../../models/company'
-import { CreateCompanyUseCase } from '../../service/Company/create-company'
+import { Company, CompanyArgs } from '../../domain/models/company'
+import { CreateCompanyUseCase } from '../../domain/use-cases/company/create-company'
+import { InMemoryCompanyRepository } from '../../infra/repositories/in-memory-company-repository'
 
 const companyRepository = new InMemoryCompanyRepository()
 const createCompany = new CreateCompanyUseCase(companyRepository)

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cnpj } from '../models/cnpj'
+import { cnpj } from '../domain/models/cnpj'
 
 describe('cnpj class test cases', () => {
   describe('format', () => {

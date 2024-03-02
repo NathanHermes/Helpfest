@@ -1,12 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 
 import { login } from '@/api/company'
 import { Checkbox } from '@/components/ui/checkbox'
-import { useEffect, useState } from 'react'
 import { validateAuth } from '@/utils/validate-auth'
+import { useEffect, useState } from 'react'
 
 const loginSchema = z.object({
   email: z.string().min(1, 'Campo obrigatório').email('Email inválido'),
@@ -94,12 +94,12 @@ export const Login = () => {
             <label htmlFor='showSecret'>Mostrar senha</label>
           </fieldset>
 
-          <button className='w-full h-9 rounded-md bg-violet-600'>Login</button>
+          <button className='w-full h-9 rounded-md bg-green-600'>Login</button>
         </form>
 
         <div className='flex items-center justify-center gap-2 text-sm'>
           <span>Não possui uma conta?</span>
-          <Link to={'/register'} className='underline underline-offset-2 font-bold text-violet-600'>Crie sua conta</Link>
+          <Link to={'/register'} className='underline underline-offset-2 font-bold text-green-600'>Crie sua conta</Link>
         </div>
       </section>
     </main>

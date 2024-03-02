@@ -1,16 +1,16 @@
 
-import { Company, CompanyArgs } from '../../models/company'
-import { CompanyRepository } from './company-repository'
+import { Company, ICompany } from '../../domain/models/company'
 import { Validator } from '../../modules/validator'
 import { CompanyInputResquestValidator } from './company-input-request-validator'
+import { CompanyRepository } from './company-repository'
 
 export class CreateCompanyUseCase {
   constructor(
     private repository: CompanyRepository
   ) { }
 
-  async execute(_company: CompanyArgs): Promise<Company | undefined> {
-    const validator: Validator<CompanyArgs> = new CompanyInputResquestValidator()
+  async execute(_company: ICompany): Promise<Company | undefined> {
+    const validator: Validator<ICompany> = new CompanyInputResquestValidator()
     const notification = await validator.validate(_company)
 
     if (notification)
