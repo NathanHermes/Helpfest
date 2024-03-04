@@ -13,94 +13,51 @@ export interface ICompany {
 }
 
 export class Company {
-  constructor(
-    private name: string,
-    private email: string,
-    private cnpj: string,
-    private phone: string,
-    private address: string,
-    private city: string,
-    private uf: string,
-    private secret: string,
-    private number?: string,
-    private complement?: string,
-    private uuid?: string,
-  ) { }
+  private name: string
+  private email: string
+  private cnpj: string
+  private phone: string
+  private address: string
+  private city: string
+  private uf: string
+  private secret: string
+  private number?: string
+  private complement?: string
+  private uuid?: string
 
-  // constructor(private _company?: ICompany) {
-  //   // if (_company === undefined) {
-
-  //   // }
-  //   // this.uuid = _company.uuid
-  //   // this.name = args?.name || ''
-  //   // this.email = args?.email || ''
-  //   // this.cnpj = args?.CNPJ || ''
-  //   // this.phone = args?.phone || ''
-  //   // this.address = args?.address || ''
-  //   // this.number = args?.number
-  //   // this.city = args?.city || ''
-  //   // this.uf = args?.uf || ''
-  //   // this.complement = args?.complement
-  //   // this.secret = args?.secret || ''
-  // }
-
-  get _uuid(): string | undefined {
-    return this.uuid
+  constructor(_company?: ICompany) {
+    this.uuid = _company?.uuid
+    this.name = _company?.name || ''
+    this.email = _company?.email || ''
+    this.cnpj = _company?.cnpj || ''
+    this.phone = _company?.phone || ''
+    this.address = _company?.address || ''
+    this.number = _company?.number
+    this.city = _company?.city || ''
+    this.uf = _company?.uf || ''
+    this.complement = _company?.complement
+    this.secret = _company?.secret || ''
   }
 
-  set _uuid(uuid: string) {
-    this.uuid = uuid
-  }
+  get _uuid(): string | undefined { return this.uuid }
 
-  get _name(): string {
-    return this.name
-  }
+  get _name(): string { return this.name }
 
-  set _name(name: string) {
-    this.name = name
-  }
+  get _email() { return this.email }
 
-  get _email() {
-    return this.email
-  }
+  get _cnpj() { return this.cnpj }
 
-  set _email(email: string) {
-    this.email = email
-  }
+  get _phone() { return this.phone }
 
-  get _CNPJ() {
-    return this.cnpj
-  }
+  get _address() { return this.address }
 
-  get _phone() {
-    return this.phone
-  }
+  get _number() { return this.number }
 
-  get _address() {
-    return this.address
-  }
+  get _city() { return this.city }
 
-  get _number() {
-    return this.number
-  }
+  get _uf() { return this.uf }
 
-  get _city() {
-    return this.city
-  }
+  get _complement() { return this.complement }
 
-  get _uf() {
-    return this.uf
-  }
-
-  get _complement() {
-    return this.complement
-  }
-
-  get _secret() {
-    return this.secret
-  }
-
-  Equal = () => {
-
-  }
+  get _secret() { return this.secret }
 }
