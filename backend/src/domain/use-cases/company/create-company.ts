@@ -1,5 +1,6 @@
 
-import { Company, ICompany } from '../../domain/models/company'
+
+import { Company, ICompany } from '../../models'
 import { Validator } from '../../modules/validator'
 import { CompanyInputResquestValidator } from './company-input-request-validator'
 import { CompanyRepository } from './company-repository'
