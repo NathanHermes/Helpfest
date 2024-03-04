@@ -1,2 +1,3 @@
 export * from './company.model'
-export * from './party'
+export * from './party.model'
+
