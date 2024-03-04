@@ -1,4 +1,4 @@
-import { Party } from '../../models/party'
+import { Party } from '../../models/party.model'
 import { PartyRepository } from './party-repository'
 
 export class FindPartyUseCase {

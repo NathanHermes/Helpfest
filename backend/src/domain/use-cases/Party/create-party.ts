@@ -1,4 +1,4 @@
-import { Party, PartyArgs } from '../../models/party'
+import { Party, PartyArgs } from '../../models/party.model'
 import { PartyRepository } from './party-repository'
 
 export class CreatePartyUseCase {
