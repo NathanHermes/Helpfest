@@ -1,4 +1,4 @@
-import { Party } from '../../domain/models/party'
+import { Party } from '../../domain/models/party.model'
 import { PartyRepository } from '../../domain/use-cases/Party/party-repository'
 import { PartyDao } from '../modules/party-dao'
 
