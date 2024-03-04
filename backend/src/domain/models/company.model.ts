@@ -1,29 +1,29 @@
 export interface ICompany {
   uuid?: string
-  name: string
-  email: string
-  cnpj: string
-  phone: string
-  address: string
+  name?: string
+  email?: string
+  cnpj?: string
+  phone?: string
+  address?: string
   number?: string
-  city: string
-  uf: string
+  city?: string
+  uf?: string
   complement?: string
-  secret: string
+  secret?: string
 }
 
 export class Company {
+  private uuid?: string
   private name: string
   private email: string
   private cnpj: string
   private phone: string
   private address: string
+  private number?: string
   private city: string
   private uf: string
-  private secret: string
-  private number?: string
   private complement?: string
-  private uuid?: string
+  private secret: string
 
   constructor(_company?: ICompany) {
     this.uuid = _company?.uuid
