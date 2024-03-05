@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto'
-import { Company } from '../domain/models/company'
+import { Company } from '../../domain/models'
 import { DAO } from './DAO'
 
 export class CompanyDao implements DAO<Company, string> {
