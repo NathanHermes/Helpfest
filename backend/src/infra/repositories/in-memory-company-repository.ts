@@ -1,5 +1,6 @@
+import { Company } from '../../domain/models'
 import { CompanyRepository } from '../../domain/use-cases/company/company-repository'
-import { Company } from '../domain/models/company'
+
 import { CompanyDao } from '../modules/company-dao'
 
 export class InMemoryCompanyRepository implements CompanyRepository {
