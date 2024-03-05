@@ -40,6 +40,7 @@ export class Company {
   }
 
   get _uuid(): string | undefined { return this.uuid }
+  set _uuid(_uuid: string) { this.uuid = _uuid }
 
   get _name(): string { return this.name }
 
