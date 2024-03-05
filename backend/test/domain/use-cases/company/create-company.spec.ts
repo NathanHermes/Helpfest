@@ -25,7 +25,9 @@ describe('Create company', () => {
   })
 
   it('should be able to create a company', () => {
-    expect(createCompany.execute(company)).resolves.toBeInstanceOf(Company)
+    createCompany.execute(company).then((resolve) => {
+      expect(resolve).toBeInstanceOf(Company)
+    })
   })
 
   describe('should not be able to create a company with', () => {
@@ -80,18 +82,18 @@ describe('Create company', () => {
 
     describe('cnpj validation', () => {
       it('undefined cnpj', () => {
-        company.CNPJ = undefined
-        expect(createCompany.execute(company)).rejects.toThrowError('CNPJ is undefined')
+        company.cnpj = undefined
+        expect(createCompany.execute(company)).rejects.toThrowError('cnpj is undefined')
       })
 
       it('blank cnpj', () => {
-        company.CNPJ = ''
-        expect(createCompany.execute(company)).rejects.toThrowError('CNPJ is blank')
+        company.cnpj = ''
+        expect(createCompany.execute(company)).rejects.toThrowError('cnpj is blank')
       })
 
       it('white space email', () => {
-        company.CNPJ = '  '
-        expect(createCompany.execute(company)).rejects.toThrowError('CNPJ is blank')
+        company.cnpj = '  '
+        expect(createCompany.execute(company)).rejects.toThrowError('cnpj is blank')
       })
 
       it('')
