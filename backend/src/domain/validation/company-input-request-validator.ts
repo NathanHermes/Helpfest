@@ -3,7 +3,7 @@ import { Validator } from './validator'
 
 export class CompanyInputResquestValidator implements Validator<ICompany> {
   private errors: string[] = []
-  private EMAIL_REGEX = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+  private readonly EMAIL_REGEX = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
   validate({ name, email, cnpj, phone, address, number, city, uf, complement, secret }: ICompany): boolean {
     if (name === undefined) this.errors.push('Name is undefined')
