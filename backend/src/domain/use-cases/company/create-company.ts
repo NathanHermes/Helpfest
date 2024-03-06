@@ -8,17 +8,17 @@ export class CreateCompanyUseCase {
     private repository: CompanyRepository
   ) { }
 
-  execute(_company: ICompany): Promise<Company | string> {
+  execute(_company: ICompany): Promise<string> {
     const validator: Validator<ICompany> = new CompanyInputResquestValidator()
+    const hasErrors: boolean = validator.validate(_company)
 
     return new Promise((resolve, reject) => {
-      if (!validator.validate(_company)) {
-        reject(new Error(validator.getErrors().at(0)))
-      } else {
-        const company = new Company(_company)
-
-        this.repository.create(company).then(() => { resolve(company) })
+      if (hasErrors) {
+        validator.getErrors().map((error) => { reject(new Error(error)) })
       }
+      const company = new Company(_company)
+
+      this.repository.create(company).then((response) => { resolve(response) })
     })
   }
 }
