@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { Company, ICompany } from '../../../../src/domain/models'
+import { ICompany } from '../../../../src/domain/models'
 import { CreateCompanyUseCase } from '../../../../src/domain/use-cases/company/create-company'
 import { InMemoryCompanyRepository } from '../../../../src/infra/repositories/in-memory-company-repository'
 
@@ -26,7 +26,7 @@ describe('Create company', () => {
 
   it('should be able to create a company', () => {
     createCompany.execute(company).then((resolve) => {
-      expect(resolve).toBeInstanceOf(Company)
+      expect(resolve).toBeTypeOf('string')
     })
   })
 
@@ -91,12 +91,10 @@ describe('Create company', () => {
         expect(createCompany.execute(company)).rejects.toThrowError('cnpj is blank')
       })
 
-      it('white space email', () => {
-        company.cnpj = '  '
+      it('white space cnpj', () => {
+        company.cnpj = '   '
         expect(createCompany.execute(company)).rejects.toThrowError('cnpj is blank')
       })
-
-      it('')
     })
   })
 })
