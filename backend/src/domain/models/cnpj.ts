@@ -1,36 +1,28 @@
 export class cnpj {
-  constructor(private cnpj: string) { }
+  private readonly regex: RegExp = /\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}/
 
-  public format(): string {
-    const cleanCnpj = this.getOnlyNumbers()
-
-    return cleanCnpj.slice(0, 14).split('').reduce((accumulator, digit, index) => {
-      const result = `${accumulator}${digit}`
-      if (index !== this.cnpj.length - 1) {
-        if (index === 1 || index === 4) return `${result}.`
-        if (index === 7) return `${result}/`
-        if (index === 11) return `${result}-`
-      }
-
-      return result
-    }, '')
-
-    const isValid = cleanCnpj / 2
-
-    if (isValid == digitoValidador) {
-
-    }
-  }
-
-  private getOnlyNumbers(): string {
-    return this.cnpj.replace(/\D/g, '')
-  }
+  constructor(private readonly cnpj: string) { }
 
   public isValid(): boolean {
-    if (this.cnpj.length === 0) return false
+    if (!this.cnpj || !this.regex.test(this.cnpj)) {
+      return false
+    }
 
-    return true
+    const digits = this.cnpj.replace(/[^0-9]/g, '')
+    const firstSum = this.calculateSum(digits, 5)
+    const secondSum = this.calculateSum(digits, 6)
+
+    const firstDigit = (firstSum % 11) < 2 ? 0 : 11 - (firstSum % 11)
+    const secondDigit = (secondSum % 11) < 2 ? 0 : 11 - (secondSum % 11)
+
+    return firstDigit === parseInt(digits.charAt(12)) && secondDigit === parseInt(digits.charAt(13))
+  }
+
+  private calculateSum(digits: string, weight: number): number {
+    let sum = 0
+    for (let i = 0; i < weight; i++) {
+      sum += parseInt(digits.charAt(i)) * (weight - i)
+    }
+    return sum
   }
 }
-
-'000.000.000-11' => '00000000011' => [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1]
