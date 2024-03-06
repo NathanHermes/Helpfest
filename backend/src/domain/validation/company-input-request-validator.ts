@@ -17,7 +17,7 @@ export class CompanyInputResquestValidator implements Validator<ICompany> {
     if (cnpj === undefined) this.errors.push('cnpj is undefined')
     else if (cnpj.trim() === '') this.errors.push('cnpj is blank')
 
-    return this.errors.length === 0
+    return this.errors.length !== 0
   }
 
   getErrors(): string[] {
