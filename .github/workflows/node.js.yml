@@ -24,8 +24,12 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
-        path: backend
         node-version: ${{ matrix.node-version }}
+    
+    - name: Run Tests
+      with: 
+        path: ~/
+      
     - run: ls
     - run: npm install
     - run: npm test
