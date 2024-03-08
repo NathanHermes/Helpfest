@@ -93,7 +93,7 @@ describe('Create company', () => {
 
       it('white space cnpj', () => {
         company.cnpj = '   '
-        expect(createCompany.execute(company)).rejects.toThrowError('cnpj is number')
+        expect(createCompany.execute(company)).rejects.toThrowError('cnpj is blank')
       })
     })
   })
