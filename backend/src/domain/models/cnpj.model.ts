@@ -1,9 +1,10 @@
-export class cnpj {
+export class Cnpj {
   private readonly regex: RegExp = /\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}/
 
   constructor(private readonly cnpj: string) { }
 
   public isValid(): boolean {
+    console.log(this.cnpj)
     if (!this.cnpj || !this.regex.test(this.cnpj)) {
       return false
     }
