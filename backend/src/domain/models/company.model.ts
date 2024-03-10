@@ -1,4 +1,4 @@
-import { cnpj } from './cnpj'
+import { Cnpj } from './cnpj.model'
 
 export interface ICompany {
   uuid?: string
@@ -18,7 +18,7 @@ export class Company {
   private uuid?: string
   private name: string
   private email: string
-  private cnpj: cnpj
+  private cnpj: Cnpj
   private phone: string
   private address: string
   private number?: string
@@ -31,7 +31,7 @@ export class Company {
     this.uuid = _company?.uuid
     this.name = _company?.name || ''
     this.email = _company?.email || ''
-    this.cnpj = new cnpj(_company?.cnpj || '')
+    this.cnpj = new Cnpj(_company?.cnpj || '')
     this.phone = _company?.phone || ''
     this.address = _company?.address || ''
     this.number = _company?.number
@@ -53,7 +53,7 @@ export class Company {
 
   get _email(): string { return this.email }
 
-  get _cnpj(): cnpj { return this.cnpj }
+  get _cnpj(): Cnpj { return this.cnpj }
 
   get _phone(): string { return this.phone }
 
