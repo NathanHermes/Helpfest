@@ -1,6 +1,6 @@
-import { Company, ICompany } from '../../models'
-import { CompanyInputResquestValidator } from '../../validation/company-input-request-validator'
-import { Validator } from '../../validation/validator'
+import { Company, ICompany } from '@models/company.model'
+import { CompanyInputResquestValidator } from '@validation/company-input-request-validator'
+import { IValidator } from '@validation/validator'
 import { CompanyRepository } from './company-repository'
 
 export class CreateCompanyUseCase {
@@ -9,7 +9,7 @@ export class CreateCompanyUseCase {
   ) { }
 
   execute(_company: ICompany): Promise<string> {
-    const validator: Validator<ICompany> = new CompanyInputResquestValidator()
+    const validator: IValidator<ICompany> = new CompanyInputResquestValidator()
     const hasErrors: boolean = validator.validate(_company)
 
     return new Promise((resolve, reject) => {
