@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Helpfest é uma plataforma web pensada e desenvolvida para oferecer, às empresas e organizações envolvidas no planejamento de grandes festas/eventos, um sistema, simples, fácil e eficiente para agilizar e melhorar suas operações.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "test": "vitest"
@@ -42,6 +43,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
+    "vite-tsconfig-paths": "^4.3.1",
     "zod": ">=3.22.3"
   }
 }
