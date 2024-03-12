@@ -1,13 +1,16 @@
+import { ICompany } from '@models/company.model'
+import { CreateCompanyUseCase } from '@use-cases/company/create-company'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { ICompany } from '../../../../src/domain/models'
-import { CreateCompanyUseCase } from '../../../../src/domain/use-cases/company/create-company'
 import { InMemoryCompanyRepository } from '../../../../src/infra/repositories/in-memory-company-repository'
 
 const companyRepository = new InMemoryCompanyRepository()
 const createCompany = new CreateCompanyUseCase(companyRepository)
 
+
 describe('Company', () => {
   let company: ICompany = {}
+
+
 
   beforeEach(async () => {
     company = {
@@ -96,8 +99,8 @@ describe('Company', () => {
     })
 
     it('should not be able to create a company with cnpj length shorter than eleven characters', () => {
-      company.cnpj = '1'
-      expect(createCompany.execute(company)).rejects.toThrowError('cnpj lenght is shorter than eleven characters')
+      company.cnpj = '111.111.11'
+      expect(createCompany.execute(company)).rejects.toThrowError('cnpj length is shorter than eleven characters')
     })
   })
 })
