@@ -1,7 +1,8 @@
-import { ICompany } from '../models'
-import { Validator } from './validator'
+import { Cnpj } from '@models/cnpj.model'
+import { ICompany } from '@models/company.model'
+import { IValidator } from '@validation/validator'
 
-export class CompanyInputResquestValidator implements Validator<ICompany> {
+export class CompanyInputResquestValidator implements IValidator<ICompany> {
   private errors: string[] = []
   private readonly EMAIL_REGEX = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
@@ -16,10 +17,9 @@ export class CompanyInputResquestValidator implements Validator<ICompany> {
 
     if (cnpj === undefined) this.errors.push('cnpj is undefined')
     else if (cnpj.trim() === '') this.errors.push('cnpj is blank')
-    else if (cnpj.trim().length < 11) this.errors.push('cnpj lenght is shorter than eleven characters')
-    else {
-      const test = new cnpj(cnpj)
-    }
+    else if (cnpj.trim().length < 11) this.errors.push('cnpj length is shorter than eleven characters')
+    else if (cnpj.trim().length > 14) this.errors.push('cnpj length is greater than fourteen characters')
+    else if (new Cnpj(cnpj).isValid()) this.errors.push('cnpj ')
 
     return this.errors.length !== 0
   }
