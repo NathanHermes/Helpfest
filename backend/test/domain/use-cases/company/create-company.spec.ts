@@ -95,9 +95,9 @@ describe('Company', () => {
       expect(createCompany.execute(company)).rejects.toThrowError('Cnpj is blank')
     })
 
-    it('should not be able to create a company with cnpj length shorter than eleven characters', () => {
-      company.cnpj = '111.111.11'
-      expect(createCompany.execute(company)).rejects.toThrowError('Cnpj length is shorter than eleven characters')
+    it('should not be able to create a company with cnpj length shorter than fourteen characters', () => {
+      company.cnpj = '1111111111111'
+      expect(createCompany.execute(company)).rejects.toThrowError('Cnpj length is shorter than fourteen characters')
     })
   })
 })
