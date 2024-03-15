@@ -7,6 +7,8 @@ export class Cnpj {
   public isValid(): boolean {
     if (this.cnpj === undefined) {
       this.errors.push('Cnpj is undefined')
+    } else if (this.cnpj.trim() === '') {
+      this.errors.push('Cnpj is blank')
     } else {
       const digits = this.cnpj.replace(/[^0-9]/g, '')
       const firstSum = this.calculateSum(digits, 5)
