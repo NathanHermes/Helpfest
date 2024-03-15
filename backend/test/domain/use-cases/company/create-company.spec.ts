@@ -6,11 +6,8 @@ import { InMemoryCompanyRepository } from '../../../../src/infra/repositories/in
 const companyRepository = new InMemoryCompanyRepository()
 const createCompany = new CreateCompanyUseCase(companyRepository)
 
-
 describe('Company', () => {
   let company: ICompany = {}
-
-
 
   beforeEach(async () => {
     company = {
@@ -85,22 +82,22 @@ describe('Company', () => {
   describe('cnpj tests', () => {
     it('should not be able to create a company with undefined cnpj', () => {
       company.cnpj = undefined
-      expect(createCompany.execute(company)).rejects.toThrowError('cnpj is undefined')
+      expect(createCompany.execute(company)).rejects.toThrowError('Cnpj is undefined')
     })
 
     it('should not be able to create a company with blank cnpj', () => {
       company.cnpj = ''
-      expect(createCompany.execute(company)).rejects.toThrowError('cnpj is blank')
+      expect(createCompany.execute(company)).rejects.toThrowError('Cnpj is blank')
     })
 
     it('should not be able to create a company with white space cnpj', () => {
       company.cnpj = '   '
-      expect(createCompany.execute(company)).rejects.toThrowError('cnpj is blank')
+      expect(createCompany.execute(company)).rejects.toThrowError('Cnpj is blank')
     })
 
     it('should not be able to create a company with cnpj length shorter than eleven characters', () => {
       company.cnpj = '111.111.11'
-      expect(createCompany.execute(company)).rejects.toThrowError('cnpj length is shorter than eleven characters')
+      expect(createCompany.execute(company)).rejects.toThrowError('Cnpj length is shorter than eleven characters')
     })
   })
 })
