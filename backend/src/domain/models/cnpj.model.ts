@@ -11,6 +11,8 @@ export class Cnpj {
       this.errors.push('Cnpj is blank')
     } else if (this.cnpj.trim().length <= 13) {
       this.errors.push('Cnpj length is shorter than fourteen characters')
+    } else if (this.cnpj.trim().length > 18) {
+      this.errors.push('Cnpj length is longer than eighteen characters')
     } else {
       const digits = this.cnpj.replace(/[^0-9]/g, '')
       const firstSum = this.calculateSum(digits, 5)
