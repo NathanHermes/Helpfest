@@ -10,7 +10,7 @@ export class CreateCompanyUseCase {
 
   execute(_company: ICompany): Promise<string> {
     const validator: IValidator<ICompany> = new CompanyInputResquestValidator()
-    const hasErrors: boolean = validator.validate(_company)
+    const hasErrors: boolean = !validator.validate(_company)
 
     return new Promise((resolve, reject) => {
       if (hasErrors) {
