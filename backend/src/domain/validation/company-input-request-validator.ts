@@ -15,13 +15,12 @@ export class CompanyInputResquestValidator implements IValidator<ICompany> {
     else if (email.trim() === '') this.errors.push('Email is blank')
     else if (!String(email).toLowerCase().match(this.EMAIL_REGEX)) this.errors.push('Email format is invalid')
 
-    if (cnpj === undefined) this.errors.push('cnpj is undefined')
-    else if (cnpj.trim() === '') this.errors.push('cnpj is blank')
-    else if (cnpj.trim().length < 11) this.errors.push('cnpj length is shorter than eleven characters')
-    else if (cnpj.trim().length > 14) this.errors.push('cnpj length is greater than fourteen characters')
-    else if (new Cnpj(cnpj).isValid()) this.errors.push('cnpj ')
+    const _cnpj = new Cnpj(cnpj)
+    if (!_cnpj.isValid()) {
+      _cnpj.getErros().map((error) => { this.errors.push(error) })
+    }
 
-    return this.errors.length !== 0
+    return this.errors.length === 0
   }
 
   getErrors(): string[] {
