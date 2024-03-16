@@ -13,7 +13,7 @@ describe('Company', () => {
     company = {
       name: 'Oasis Eventos',
       email: 'oasis@gmail.com',
-      cnpj: '56041364000174',
+      cnpj: '76.767.806/0001-71',
       phone: '1136861256',
       address: 'Rod. Washington Luís',
       number: '',
@@ -103,6 +103,11 @@ describe('Company', () => {
     it('should not be able to create a company with cnpj length longer than eighteen characters', () => {
       company.cnpj = '11.111.111/1111-111'
       expect(createCompany.execute(company)).rejects.toThrowError('Cnpj length is longer than eighteen characters')
+    })
+
+    it('should not be able to create a company with invalid cnpj', () => {
+      company.cnpj = '11.111.111/1111-21'
+      expect(createCompany.execute(company)).rejects.toThrowError('Cnpj is invalid')
     })
   })
 })
