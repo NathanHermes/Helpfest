@@ -109,5 +109,10 @@ describe('Company', () => {
       company.cnpj = '11.111.111/1111-21'
       expect(createCompany.execute(company)).rejects.toThrowError('Cnpj is invalid')
     })
+
+    it('should not be able to create a company with cnpj length longer than fourteen characters', () => {
+      company.cnpj = '111.111.111-111'
+      expect(createCompany.execute(company)).rejects.toThrowError('cnpj length is longer than fourteen characters')
+    })
   })
 })
