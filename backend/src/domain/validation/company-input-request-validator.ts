@@ -17,7 +17,7 @@ export class CompanyInputResquestValidator implements IValidator<ICompany> {
 
     const _cnpj = new Cnpj(cnpj)
     if (!_cnpj.isValid()) {
-      _cnpj.getErros().map((error) => { this.errors.push(error) })
+      _cnpj.getErrors().map((error) => { this.errors.push(error) })
     }
 
     return this.errors.length === 0
