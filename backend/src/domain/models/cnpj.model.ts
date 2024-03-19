@@ -25,13 +25,14 @@ export class Cnpj {
       const secondDigit: number = (secondSum % 11) < 2 ? 0 : 11 - (secondSum % 11)
       const isValid: boolean = firstDigit === parseInt(digits.charAt(12)) && secondDigit === parseInt(digits.charAt(13))
 
+      console.log(isValid, ' - ', this.invalidCnpjs.includes(digits))
+
       if (this.invalidCnpjs.includes(digits)) {
         this.errors.push('Cnpj is invalid')
-      } else if (isValid) {
+      } else if (!this.invalidCnpjs.includes(digits) && !isValid) {
         this.errors.push('Cnpj is invalid')
       }
     }
-    console.log(this.errors.length === 0)
 
     return this.errors.length === 0
   }
