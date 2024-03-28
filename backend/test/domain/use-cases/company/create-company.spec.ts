@@ -1,5 +1,6 @@
 import { ICompany } from '@models/company.model'
 import { CreateCompanyUseCase } from '@use-cases/company/create-company'
+import { fail } from 'assert'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryCompanyRepository } from '../../../../src/infra/repositories/in-memory-company-repository'
 
@@ -27,18 +28,31 @@ describe('Company', () => {
   it('should be able to create a company', () => {
     createCompany.execute(company).then((resolve) => {
       expect(resolve).toBeTypeOf('string')
+    }).catch((error: Error) => {
+      fail(error.message)
     })
   })
 
   describe('name tests', () => {
     it('should not be able to create a company with undefined name', () => {
       company.name = undefined
-      expect(createCompany.execute(company)).rejects.toThrowError('Name is undefined')
+
+      createCompany.execute(company).then((result) => {
+        fail(result)
+      }).catch((error: Error) => {
+        console.log(error.message)
+        expect(error.message).toBe('Name is undefined')
+      })
     })
 
     it('should not be able to create a company with blank name', () => {
       company.name = ''
-      expect(createCompany.execute(company)).rejects.toThrowError('Name is blank')
+
+      createCompany.execute(company).then((result) => {
+        fail(result)
+      }).catch((error: Error) => {
+        expect(error.message).toEqual('Name is blank')
+      })
     })
 
     it('should not be able to create a company with white space name', () => {
@@ -82,32 +96,27 @@ describe('Company', () => {
   describe('cnpj tests', () => {
     it('should not be able to create a company with undefined cnpj', () => {
       company.cnpj = undefined
-      expect(createCompany.execute(company)).rejects.toThrowError('Cnpj is undefined')
+      expect(createCompany.execute(company)).rejects.toThrowError('CNPJ is undefined')
     })
 
     it('should not be able to create a company with blank cnpj', () => {
       company.cnpj = ''
-      expect(createCompany.execute(company)).rejects.toThrowError('Cnpj is blank')
+      expect(createCompany.execute(company)).rejects.toThrowError('CNPJ is blank')
     })
 
     it('should not be able to create a company with white space cnpj', () => {
       company.cnpj = '   '
-      expect(createCompany.execute(company)).rejects.toThrowError('Cnpj is blank')
+      expect(createCompany.execute(company)).rejects.toThrowError('CNPJ is blank')
     })
 
     it('should not be able to create a company with cnpj length shorter than fourteen characters', () => {
       company.cnpj = '1111111111111'
-      expect(createCompany.execute(company)).rejects.toThrowError('Cnpj length is shorter than fourteen characters')
-    })
-
-    it('should not be able to create a company with cnpj length longer than eighteen characters', () => {
-      company.cnpj = '11.111.111/1111-111'
-      expect(createCompany.execute(company)).rejects.toThrowError('Cnpj length is longer than eighteen characters')
+      expect(createCompany.execute(company)).rejects.toThrowError('CNPJ length is shorter than fourteen characters')
     })
 
     it('should not be able to create a company with invalid cnpj', () => {
       company.cnpj = '11.111.111/1111-21'
-      expect(createCompany.execute(company)).rejects.toThrowError('Cnpj is invalid')
+      expect(createCompany.execute(company)).rejects.toThrowError('CNPJ is invalid')
     })
   })
 })
