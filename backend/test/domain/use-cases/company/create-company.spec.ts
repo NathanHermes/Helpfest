@@ -36,23 +36,12 @@ describe('Company', () => {
   describe('name tests', () => {
     it('should not be able to create a company with undefined name', () => {
       company.name = undefined
-
-      createCompany.execute(company).then((result) => {
-        fail(result)
-      }).catch((error: Error) => {
-        console.log(error.message)
-        expect(error.message).toBe('Name is undefined')
-      })
+      expect(createCompany.execute(company)).rejects.toThrowError('Name is undefined')
     })
 
     it('should not be able to create a company with blank name', () => {
       company.name = ''
-
-      createCompany.execute(company).then((result) => {
-        fail(result)
-      }).catch((error: Error) => {
-        expect(error.message).toEqual('Name is blank')
-      })
+      expect(createCompany.execute(company)).rejects.toThrowError('Name is blank')
     })
 
     it('should not be able to create a company with white space name', () => {
