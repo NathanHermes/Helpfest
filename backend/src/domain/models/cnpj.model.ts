@@ -23,16 +23,14 @@ export class Cnpj {
 
       const repeatedNumbers: boolean = arrCNPJ.every((num, i, arr) => num === arr[0])
       if (repeatedNumbers) {
-        return false
+        this.errors.push('CNPJ is invalid')
       }
 
       const firstDigit = this.validateDigit(arrCNPJ, 1)
       const secondDigit = this.validateDigit(arrCNPJ, 2)
       if (!firstDigit || !secondDigit) {
-        return false
+        this.errors.push('CNPJ is invalid')
       }
-
-      return true
     }
 
     return this.errors.length === 0
