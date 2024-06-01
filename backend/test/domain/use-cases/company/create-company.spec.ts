@@ -104,8 +104,26 @@ describe('Company', () => {
     })
 
     it('should not be able to create a company with invalid cnpj', () => {
-      company.cnpj = '11.111.111/1111-21'
+      company.cnpj = '39.840.615/0001-62'
       expect(createCompany.execute(company)).rejects.toThrowError('CNPJ is invalid')
     })
+  })
+
+  describe('phone tests', () => {
+    it('should not be able to create a company with undefined phone number', () => {
+      company.phone = undefined
+      expect(createCompany.execute(company)).rejects.toThrowError('Phone number is undefined')
+    })
+
+    /*
+    it('should not be able to create a company with blank phone number', () => {
+      company.phone = ''
+      expect(createCompany.execute(company)).rejects.toThrowError('Phone number is blank')
+    })
+
+    it('should not be able to create a company with white space phone number', () => {
+      company.phone = '   '
+      expect(createCompany.execute(company)).rejects.toThrowError('Phone number is blank')
+    })*/
   })
 })
