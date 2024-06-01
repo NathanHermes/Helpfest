@@ -1,18 +1,9 @@
 export class Cnpj {
-  private readonly regex: RegExp = /\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}/
-  private readonly invalidCnpjs: string[] = [
-    '11111111111111'
-  ]
   private errors: string[] = []
 
-  constructor(private readonly cnpj: string | undefined) { }
+  constructor(private readonly cnpj: string) { }
 
   public isValid(): boolean {
-    if (this.cnpj === undefined) {
-      this.errors.push('CNPJ is undefined')
-      return false
-    }
-
     const digits: string = this.cnpj.replace(/[^0-9]/g, '')
     if (digits.length === 0) {
       this.errors.push('CNPJ is blank')
