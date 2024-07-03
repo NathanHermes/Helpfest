@@ -115,15 +115,10 @@ describe('Company', () => {
       expect(createCompany.execute(company)).rejects.toThrowError('Phone number is undefined')
     })
 
-    /*
     it('should not be able to create a company with blank phone number', () => {
       company.phone = ''
       expect(createCompany.execute(company)).rejects.toThrowError('Phone number is blank')
     })
 
-    it('should not be able to create a company with white space phone number', () => {
-      company.phone = '   '
-      expect(createCompany.execute(company)).rejects.toThrowError('Phone number is blank')
-    })*/
   })
 })
