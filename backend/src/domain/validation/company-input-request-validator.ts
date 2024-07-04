@@ -34,7 +34,7 @@ export class CompanyInputResquestValidator implements IValidator<ICompany> {
 
     if (phone === undefined) {
       this.errors.push('Phone number is undefined')
-    } else if (phone === '') {
+    } else if (phone.trim() === '') {
       this.errors.push('Phone number is blank')
     }
 
