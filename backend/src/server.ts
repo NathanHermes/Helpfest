@@ -1,6 +1,6 @@
 import cors from 'cors'
 import express, { NextFunction } from 'express'
-import { CompanyRoutes } from './application/routes/company-routes'
+import { CompanyRoutes } from './application/routes/company.route'
 import { PartyRoutes } from './application/routes/party-routes'
 
 const app = express()
