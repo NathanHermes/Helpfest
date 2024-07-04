@@ -23,9 +23,19 @@ export class CompanyInputResquestValidator implements IValidator<ICompany> {
       this.errors.push('Email format is invalid')
     }
 
-    const _cnpj = new Cnpj(cnpj)
-    if (!_cnpj.isValid()) {
-      _cnpj.getErrors().map((error) => { this.errors.push(error) })
+    if (cnpj === undefined) {
+      this.errors.push('CNPJ is undefined')
+    } else {
+      const _cnpj = new Cnpj(cnpj)
+      if (!_cnpj.isValid()) {
+        _cnpj.getErrors().map((error) => { this.errors.push(error) })
+      }
+    }
+
+    if (phone === undefined) {
+      this.errors.push('Phone number is undefined')
+    } else if (phone === '') {
+      this.errors.push('Phone number is blank')
     }
 
     return this.errors.length === 0
