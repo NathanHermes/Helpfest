@@ -115,5 +115,10 @@ describe('Company', () => {
       await expect(createCompany.execute(company)).rejects.toThrowError('Phone number is blank')
     })
 
+    it('should not be able to create a company with white space phone number', async () => {
+      company.phone = '   '
+      await expect(createCompany.execute(company)).rejects.toThrowError('Phone number is blank')
+    })
+
   })
 })
