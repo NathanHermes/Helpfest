@@ -1,73 +1,89 @@
-import { Cnpj } from './cnpj.model'
-
-export interface ICompany {
+export type TCompany = {
   uuid?: string
-  name?: string
-  email?: string
-  cnpj?: string
-  phone?: string
-  address?: string
+  name: string
+  email: string
+  cnpj: string
+  phone: string
+  address: string
   number?: string
-  city?: string
-  uf?: string
+  city: string
+  uf: string
   complement?: string
-  secret?: string
+  secret: string
 }
 
 export class Company {
-  private uuid?: string
-  private name: string
-  private email: string
-  private _cnpj: Cnpj
-  private phone: string
-  private address: string
-  private number?: string
-  private city: string
-  private uf: string
-  private complement?: string
-  private secret: string
+  #uuid?: string
+  #name: string
+  #email: string
+  #cnpj: string
+  #phone: string
+  #address: string
+  #number?: string
+  #city: string
+  #uf: string
+  #complement?: string
+  #secret: string
 
-  constructor(_company?: ICompany) {
-    this.uuid = _company?.uuid
-    this.name = _company?.name || ''
-    this.email = _company?.email || ''
-    this._cnpj = new Cnpj(_company?.cnpj || '')
-    this.phone = _company?.phone || ''
-    this.address = _company?.address || ''
-    this.number = _company?.number
-    this.city = _company?.city || ''
-    this.uf = _company?.uf || ''
-    this.complement = _company?.complement
-    this.secret = _company?.secret || ''
+  constructor(data: TCompany) {
+    this.#uuid = data.uuid
+    this.#name = data.name
+    this.#email = data.email
+    this.#cnpj = data.cnpj
+    this.#phone = data.phone
+    this.#address = data.address
+    this.#number = data.number
+    this.#city = data.city
+    this.#uf = data.uf
+    this.#complement = data.complement
+    this.#secret = data.secret
   }
 
-  public getUuid(): string | undefined {
-    return this.uuid
+  public get uuid(): string | undefined {
+    return this.#uuid
   }
 
-  public setUuid(_uuid: string) {
-    this.uuid = _uuid
+  public set uuid(_uuid: string) {
+    this.#uuid = _uuid
   }
 
-  get _name(): string { return this.name }
-
-  get _email(): string { return this.email }
-
-  get cnpj(): Cnpj {
-    return this._cnpj
+  get name(): string {
+    return this.#name
   }
 
-  get _phone(): string { return this.phone }
+  get email(): string {
+    return this.#email
+  }
 
-  get _address(): string { return this.address }
+  get cnpj(): string {
+    return this.#cnpj
+  }
 
-  get _number(): string | undefined { return this.number }
+  get phone(): string {
+    return this.#phone
+  }
 
-  get _city(): string { return this.city }
+  get address(): string {
+    return this.#address
+  }
 
-  get _uf(): string { return this.uf }
+  get number(): string | undefined {
+    return this.#number
+  }
 
-  get _complement(): string | undefined { return this.complement }
+  get city(): string {
+    return this.#city
+  }
 
-  get _secret(): string { return this.secret }
+  get uf(): string {
+    return this.#uf
+  }
+
+  get complement(): string | undefined {
+    return this.#complement
+  }
+
+  get secret(): string {
+    return this.#secret
+  }
 }
