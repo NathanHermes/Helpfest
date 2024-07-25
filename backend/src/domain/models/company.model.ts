@@ -1,4 +1,4 @@
-export type TCompany = {
+export type CompanyDTO = {
   uuid?: string
   name: string
   email: string
@@ -25,7 +25,7 @@ export class Company {
   #complement?: string
   #secret: string
 
-  constructor(data: TCompany) {
+  constructor(data: CompanyDTO) {
     this.#uuid = data.uuid
     this.#name = data.name
     this.#email = data.email
