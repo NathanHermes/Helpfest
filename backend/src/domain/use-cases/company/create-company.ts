@@ -1,24 +1,27 @@
-import { Company, ICompany } from '@models/company.model'
-import { CompanyInputResquestValidator } from '@validation/company-input-request-validator'
-import { IValidator } from '@validation/validator'
+import { Company, CompanyDTO } from '@models/company.model'
+import { Notification } from '@use-cases/utils/notification'
+import { Validator } from '@use-cases/utils/validator'
+import { CompanyInputResquestValidator } from './company-input-request-validator'
 import { CompanyRepository } from './company-repository'
 
 export class CreateCompanyUseCase {
-  constructor(
-    private repository: CompanyRepository
-  ) { }
+  #repository: CompanyRepository
 
-  execute(_company: ICompany): Promise<string> {
-    const validator: IValidator<ICompany> = new CompanyInputResquestValidator()
-    const hasErrors: boolean = !validator.validate(_company)
+  constructor( data: CompanyRepository ) {
+    this.#repository = data
+  }
 
-    return new Promise((resolve, reject) => {
-      if (hasErrors) {
-        validator.getErrors().map((error) => { reject(new Error(error)) })
+  execute( data: CompanyDTO ): Promise<Company> {
+    const validator: Validator<CompanyDTO> = new CompanyInputResquestValidator()
+    const notification: Notification = validator.validate( data )
+
+    return new Promise( ( resolve, reject ) => {
+      if ( notification.hasErros() ) {
+        reject( new Error( notification.errorMessage() ) )
       }
-      const company = new Company(_company)
+      const company = new Company( data )
 
-      this.repository.create(company).then((response) => { resolve(response) })
-    })
+      this.#repository.create( company ).then( () => { resolve( company ) } )
+    } )
   }
 }
