@@ -1,4 +1,5 @@
-import { Company } from '../../models'
+import { Company } from '@models/company.model'
+
 
 export interface CompanyRepository {
   findAll(): Array<Company>
