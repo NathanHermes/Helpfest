@@ -41,18 +41,19 @@ describe( 'Company', () => {
 
   describe( 'name tests', () => {
     it( 'should not be able to create a company with undefined name', async () => {
+      //@ts-ignore 
       company.name = undefined
-      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Name is undefined' )
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Name is undefined or empty' )
     } )
 
     it( 'should not be able to create a company with blank name', async () => {
       company.name = ''
-      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Name is blank' )
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Name is undefined or empty' )
     } )
 
     it( 'should not be able to create a company with white space name', async () => {
       company.name = '   '
-      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Name is blank' )
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Name is undefined or empty' )
     } )
 
     it( 'should not be able to create a company with name length shorter than three characters', async () => {
@@ -63,6 +64,7 @@ describe( 'Company', () => {
 
   describe( 'email tests', () => {
     it( 'should not be able to create a company with undefined email', async () => {
+      //@ts-ignore
       company.email = undefined
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Email is undefined' )
     } )
@@ -90,6 +92,7 @@ describe( 'Company', () => {
 
   describe( 'cnpj tests', () => {
     it( 'should not be able to create a company with undefined cnpj', async () => {
+      //@ts-ignore
       company.cnpj = undefined
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'CNPJ is undefined' )
     } )
@@ -117,6 +120,7 @@ describe( 'Company', () => {
 
   describe( 'phone tests', () => {
     it( 'should not be able to create a company with undefined phone number', async () => {
+      //@ts-ignore
       company.phone = undefined
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Phone number is undefined' )
     } )
