@@ -8,8 +8,8 @@ export class CompanyInputResquestValidator extends Validator<CompanyDTO> {
   #notification: Notification = new Notification()
 
   public validate( { name, email, cnpj, phone, address, number, city, uf, complement, secret }: CompanyDTO ): Notification {
-    if ( name === undefined ) {
-      this.#notification.addError( 'Name is undefined' )
+    if ( this.nullOrEmpty( name ) ) {
+      this.#notification.addError( 'Name is undefined or empty' )
     } else if ( name.trim() === '' ) {
       this.#notification.addError( 'Name is blank' )
     } else if ( name.trim().length <= 3 ) {
