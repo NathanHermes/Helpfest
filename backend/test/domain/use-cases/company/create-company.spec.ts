@@ -14,7 +14,7 @@ describe( 'Test cases of create a new Company', () => {
       name: 'Oasis Eventos',
       email: 'oasis@email.com',
       cnpj: '76.767.806/0001-71',
-      phone: '1136861256',
+      phone: '(11) 93686-1256',
       address: 'Rod. Washington Luís',
       number: '',
       city: 'São Carlos',
@@ -122,6 +122,11 @@ describe( 'Test cases of create a new Company', () => {
     it( '#018: Should not be able to create a company with white space phone number', async () => {
       company.phone = '   '
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Phone number is undefined or empty' )
+    } )
+
+    it( '#019: Should not be able to create a company with phone number length shorter than eleven characters', async () => {
+      company.phone = '(999) 99999-9999'
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Phone number length is shorter than eleven characters' )
     } )
   } )
 } )
