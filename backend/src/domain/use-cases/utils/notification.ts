@@ -16,7 +16,10 @@ export class Notification {
   public errorMessage(): string {
     let errors: string = ''
 
-    this.#errors.map( error => errors += error.message )
+    this.#errors.map( error => {
+      if ( errors === '' ) errors = error.message
+      else errors += ( ', ' + error.message )
+    } )
 
     return errors
   }
