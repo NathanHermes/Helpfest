@@ -30,6 +30,8 @@ export class CompanyInputResquestValidator extends Validator<CompanyDTO> {
 
     if ( this.isUndefinedOrEmpty( phone ) ) {
       this.#notification.addError( 'Phone number is undefined or empty' )
+    } else if ( phone.replace( /[^0-9]/g, '' ).length > 11 ) {
+      this.#notification.addError( 'Phone number length is shorter than eleven characters' )
     }
 
     return this.#notification
