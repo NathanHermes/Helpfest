@@ -34,6 +34,10 @@ export class CompanyInputResquestValidator extends Validator<CompanyDTO> {
       this.#notification.addError( 'Phone number length is shorter than eleven characters' )
     }
 
+    if ( this.isUndefinedOrEmpty( address ) ) {
+      this.#notification.addError( 'Address is undefined or empty' )
+    }
+
     return this.#notification
   }
 }
