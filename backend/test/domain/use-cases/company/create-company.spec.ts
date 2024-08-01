@@ -41,7 +41,7 @@ describe( 'Company', () => {
 
   describe( 'name tests', () => {
     it( 'should not be able to create a company with undefined name', async () => {
-      //@ts-ignore 
+      //@ts-expect-error This is an intentionally error of undefined value
       company.name = undefined
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Name is undefined or empty' )
     } )
@@ -64,7 +64,7 @@ describe( 'Company', () => {
 
   describe( 'email tests', () => {
     it( 'should not be able to create a company with undefined email', async () => {
-      //@ts-ignore
+      //@ts-expect-error This is an intentionally error of undefined value
       company.email = undefined
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Email is undefined' )
     } )
@@ -92,7 +92,7 @@ describe( 'Company', () => {
 
   describe( 'cnpj tests', () => {
     it( 'should not be able to create a company with undefined cnpj', async () => {
-      //@ts-ignore
+      //@ts-expect-error This is an intentionally error of undefined value
       company.cnpj = undefined
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'CNPJ is undefined' )
     } )
@@ -120,7 +120,7 @@ describe( 'Company', () => {
 
   describe( 'phone tests', () => {
     it( 'should not be able to create a company with undefined phone number', async () => {
-      //@ts-ignore
+      //@ts-expect-error This is an intentionally error of undefined value
       company.phone = undefined
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Phone number is undefined' )
     } )
