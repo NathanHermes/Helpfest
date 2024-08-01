@@ -1,11 +1,12 @@
 export class Cnpj {
-  static #errors: string[] = []
+  static #errors: string[]
 
   public static isValid( cnpj: string ): boolean {
+    this.#errors = []
     const digits: string = cnpj.replace( /[^0-9]/g, '' )
 
     if ( digits.length === 0 ) {
-      this.#errors.push( 'CNPJ is blank' )
+      this.#errors.push( 'CNPJ is undefined or empty' )
     } else if ( digits.length !== 14 ) {
       this.#errors.push( 'CNPJ length is shorter than fourteen characters' )
     } else {
