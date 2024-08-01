@@ -136,5 +136,10 @@ describe( 'Test cases of create a new Company', () => {
       company.address = undefined
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Address is undefined or empty' )
     } )
+
+    it( '#021: Should not be able to create a company with blank address', async () => {
+      company.address = ''
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Address is undefined or empty' )
+    } )
   } )
 } )
