@@ -129,4 +129,12 @@ describe( 'Test cases of create a new Company', () => {
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Phone number length is shorter than eleven characters' )
     } )
   } )
+
+  describe( 'Case tests to validate the address of company', () => {
+    it( '#020: Should not be able to create a company with undefined address', async () => {
+      //@ts-expect-error This is an intentionally error of undefined value
+      company.address = undefined
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Address is undefined or empty' )
+    } )
+  } )
 } )
