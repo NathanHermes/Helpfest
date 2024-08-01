@@ -6,19 +6,8 @@ import { InMemoryCompanyRepository } from '../../../../src/infra/repositories/in
 const companyRepository = new InMemoryCompanyRepository()
 const createCompany = new CreateCompanyUseCase( companyRepository )
 
-describe( 'Company', () => {
-  let company: CompanyDTO = {
-    name: 'Oasis Eventos',
-    email: 'oasis@email.com',
-    cnpj: '76.767.806/0001-71',
-    phone: '1136861256',
-    address: 'Rod. Washington Luís',
-    number: '',
-    city: 'São Carlos',
-    uf: 'SP',
-    complement: '',
-    secret: 'test'
-  }
+describe( 'Test cases of create a new Company', () => {
+  let company: CompanyDTO
 
   beforeEach( async () => {
     company = {
@@ -35,105 +24,104 @@ describe( 'Company', () => {
     }
   } )
 
-  it( 'should be able to create a company', async () => {
+  it( '#001: Should be able to create a new company without errors', async () => {
     await expect( createCompany.execute( company ) ).resolves.toBeTypeOf( 'object' )
   } )
 
-  describe( 'name tests', () => {
-    it( 'should not be able to create a company with undefined name', async () => {
+  describe( 'Case tests to validate the name of company', () => {
+    it( '#002: Should not be able to create a company with undefined name', async () => {
       //@ts-expect-error This is an intentionally error of undefined value
       company.name = undefined
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Name is undefined or empty' )
     } )
 
-    it( 'should not be able to create a company with blank name', async () => {
+    it( '#003: Should not be able to create a company with blank name', async () => {
       company.name = ''
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Name is undefined or empty' )
     } )
 
-    it( 'should not be able to create a company with white space name', async () => {
+    it( '#004: Should not be able to create a company with white space name', async () => {
       company.name = '   '
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Name is undefined or empty' )
     } )
 
-    it( 'should not be able to create a company with name length shorter than three characters', async () => {
+    it( '#005: Should not be able to create a company with name length shorter than three characters', async () => {
       company.name = 'abc'
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Name length is shorter than three characters' )
     } )
   } )
 
-  describe( 'email tests', () => {
-    it( 'should not be able to create a company with undefined email', async () => {
+  describe( 'Case tests to validate the e-mail of company', () => {
+    it( '#006: Should not be able to create a company with undefined email', async () => {
       //@ts-expect-error This is an intentionally error of undefined value
       company.email = undefined
-      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Email is undefined' )
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'E-mail is undefined or empty' )
     } )
 
-    it( 'should not be able to create a company with blank email', async () => {
+    it( '#007: Should not be able to create a company with blank email', async () => {
       company.email = ''
-      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Email is blank' )
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'E-mail is undefined or empty' )
     } )
 
-    it( 'should not be able to create a company with white space email', async () => {
+    it( '#008: Should not be able to create a company with white space email', async () => {
       company.email = '   '
-      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Email is blank' )
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'E-mail is undefined or empty' )
     } )
 
-    it( 'should not be able to create a company with email without character @', async () => {
+    it( '#009: Should not be able to create a company with email without character @', async () => {
       company.email = 'oasis_gmail.com'
-      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Email format is invalid' )
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'E-mail format is invalid' )
     } )
 
-    it( 'should not be able to create a company with email without domain', async () => {
+    it( '#010: Should not be able to create a company with email without domain', async () => {
       company.email = 'oasis@'
-      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Email format is invalid' )
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'E-mail format is invalid' )
     } )
   } )
 
-  describe( 'cnpj tests', () => {
-    it( 'should not be able to create a company with undefined cnpj', async () => {
+  describe( 'Case tests to validate the cnpj of company', () => {
+    it( '#011: Should not be able to create a company with undefined cnpj', async () => {
       //@ts-expect-error This is an intentionally error of undefined value
       company.cnpj = undefined
-      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'CNPJ is undefined' )
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'CNPJ is undefined or empty' )
     } )
 
-    it( 'should not be able to create a company with blank cnpj', async () => {
+    it( '#012: Should not be able to create a company with blank cnpj', async () => {
       company.cnpj = ''
-      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'CNPJ is blank' )
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'CNPJ is undefined or empty' )
     } )
 
-    it( 'should not be able to create a company with white space cnpj', async () => {
+    it( '#013: Should not be able to create a company with white space cnpj', async () => {
       company.cnpj = '   '
-      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'CNPJ is blank' )
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'CNPJ is undefined or empty' )
     } )
 
-    it( 'should not be able to create a company with cnpj length shorter than fourteen characters', async () => {
-      company.cnpj = '1111111111111'
+    it( '#014: Should not be able to create a company with cnpj length shorter than fourteen characters', async () => {
+      company.cnpj = '11.111.111/1111-111'
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'CNPJ length is shorter than fourteen characters' )
     } )
 
-    it( 'should not be able to create a company with invalid cnpj', async () => {
+    it( '#015: Should not be able to create a company with invalid cnpj', async () => {
       company.cnpj = '39.840.615/0001-62'
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'CNPJ is invalid' )
     } )
   } )
 
-  describe( 'phone tests', () => {
-    it( 'should not be able to create a company with undefined phone number', async () => {
+  describe( 'Case tests to validate the phone of company', () => {
+    it( '#016: Should not be able to create a company with undefined phone number', async () => {
       //@ts-expect-error This is an intentionally error of undefined value
       company.phone = undefined
-      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Phone number is undefined' )
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Phone number is undefined or empty' )
     } )
 
-    it( 'should not be able to create a company with blank phone number', async () => {
+    it( '#017: Should not be able to create a company with blank phone number', async () => {
       company.phone = ''
-      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Phone number is blank' )
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Phone number is undefined or empty' )
     } )
 
-    it( 'should not be able to create a company with white space phone number', async () => {
+    it( '#018: Should not be able to create a company with white space phone number', async () => {
       company.phone = '   '
-      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Phone number is blank' )
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Phone number is undefined or empty' )
     } )
-
   } )
 } )
