@@ -146,5 +146,10 @@ describe( 'Test cases of create a new Company', () => {
       company.address = '   '
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Address is undefined or empty' )
     } )
+
+    it( '#023: Should not be able to create a company with address length shorter then three characters', async () => {
+      company.address = 'R'
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Address is invalid' )
+    } )
   } )
 } )
