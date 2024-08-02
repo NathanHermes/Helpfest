@@ -141,5 +141,10 @@ describe( 'Test cases of create a new Company', () => {
       company.address = ''
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Address is undefined or empty' )
     } )
+
+    it( '#022: Should not be able to create a company with white spaces address', async () => {
+      company.address = '   '
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Address is undefined or empty' )
+    } )
   } )
 } )
