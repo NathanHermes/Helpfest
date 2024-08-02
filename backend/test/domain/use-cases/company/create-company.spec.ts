@@ -152,4 +152,11 @@ describe( 'Test cases of create a new Company', () => {
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Address is invalid' )
     } )
   } )
+
+  describe( 'Case tests to validate the number of company', () => {
+    it('#024: Should be able to create a company with undefined number', async () => {
+      company.number = undefined
+      await expect( createCompany.execute( company ) ).resolves.toBeTypeOf( 'object' )
+    })
+  })
 } )
