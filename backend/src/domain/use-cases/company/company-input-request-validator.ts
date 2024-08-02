@@ -36,6 +36,8 @@ export class CompanyInputResquestValidator extends Validator<CompanyDTO> {
 
     if ( this.isUndefinedOrEmpty( address ) ) {
       this.#notification.addError( 'Address is undefined or empty' )
+    } else if ( address.length < 3 ) {
+      this.#notification.addError( 'Address is invalid' )
     }
 
     return this.#notification
