@@ -168,5 +168,10 @@ describe( 'Test cases of create a new Company', () => {
       company.number = '   '
       await expect( createCompany.execute( company ) ).resolves.toBeTypeOf( 'object' )
     } )
+
+    it( '#027: Should not be able to create a company with number that is just letters', async () => {
+      company.number = 'ABC'
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Number is invalid' )
+    } )
   } )
 } )
