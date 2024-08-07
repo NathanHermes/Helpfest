@@ -163,5 +163,10 @@ describe( 'Test cases of create a new Company', () => {
       company.number = ''
       await expect( createCompany.execute( company ) ).resolves.toBeTypeOf( 'object' )
     } )
+
+    it( '#026: Should be able to create a company with white spaces number', async () => {
+      company.number = '   '
+      await expect( createCompany.execute( company ) ).resolves.toBeTypeOf( 'object' )
+    } )
   } )
 } )
