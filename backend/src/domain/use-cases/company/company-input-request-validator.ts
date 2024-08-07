@@ -40,6 +40,10 @@ export class CompanyInputResquestValidator extends Validator<CompanyDTO> {
       this.#notification.addError( 'Address is invalid' )
     }
 
+    if ( number !== undefined && /^[a-zA-Z]+$/.test( number ) ) {
+      this.#notification.addError( 'Number is invalid' )
+    }
+
     return this.#notification
   }
 }
