@@ -154,9 +154,14 @@ describe( 'Test cases of create a new Company', () => {
   } )
 
   describe( 'Case tests to validate the number of company', () => {
-    it('#024: Should be able to create a company with undefined number', async () => {
+    it( '#024: Should be able to create a company with undefined number', async () => {
       company.number = undefined
       await expect( createCompany.execute( company ) ).resolves.toBeTypeOf( 'object' )
-    })
-  })
+    } )
+
+    it( '#025: Should be able to create a company with black number', async () => {
+      company.number = ''
+      await expect( createCompany.execute( company ) ).resolves.toBeTypeOf( 'object' )
+    } )
+  } )
 } )
