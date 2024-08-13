@@ -44,6 +44,10 @@ export class CompanyInputResquestValidator extends Validator<CompanyDTO> {
       this.#notification.addError( 'Number is invalid' )
     }
 
+    if ( this.isUndefinedOrEmpty( city ) ) {
+      this.#notification.addError( 'City is undefined or empty' )
+    }
+
     return this.#notification
   }
 }
