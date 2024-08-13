@@ -174,4 +174,12 @@ describe( 'Test cases of create a new Company', () => {
       await expect( createCompany.execute( company ) ).rejects.toThrowError( 'Number is invalid' )
     } )
   } )
+
+  describe( 'Case tests to validate the city of company', () => {
+    it( '#28: Should not be able to create a company with undefined city', async () => {
+      //@ts-expect-error This is an intentionally error of undefined value
+      company.city = undefined
+      await expect( createCompany.execute( company ) ).rejects.toThrowError( 'City is undefined or empty' )
+    } )
+  } )
 } )
